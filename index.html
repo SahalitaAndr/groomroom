@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GroomRoom - Груминг-салон</title>
+    <link rel="icon" type="image/png" href="logo/logo_groom1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <nav class="nav-left">
+                <a class="btn-nav" href="#uslugi">Услуги</a>
+                <a class="btn-nav" href="#contacts">Контакты</a>
+            </nav>
+            <div class="logo test-t-logo" onclick="location.href='index.html'">
+                <img src="logo/logo_groom1.png" alt="Logo">
+            </div>
+            <div class="nav-right">
+                <button class="btn-nav" onclick="openModal('loginModal')">Вход</button>
+                <button class="btn-nav btn-reg" onclick="openModal('registerModal')">Регистрация</button>
+            </div>
+        </header>
+
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Груминг-салон</h1>
+                <h2>GroomRoom</h2>
+                <h5>Вам больше не придется беспокоиться о том,<br>что происходит с вашими питомцами за закрытыми дверьми.</h5>
+                <button style="margin-top: 30px;" class="btn" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">Записаться на груминг</button>
+            </div>
+            <div class="glavfoto">
+                <img src="img/foto1.png" alt="Hero">
+            </div>
+        </div>
+
+        <div class="service" id="services">
+            <div class="foto2">
+                <img src="img/foto2.png" alt="Service">
+            </div>
+            <div class="service-content">
+                <h3 class="service-title">В нашем груминг-салоне</h3>
+                <h5 style="font-weight: 500;" class="service-subtitle">Только проверенные процедуры, которые реально нужны.</h5>
+                <div class="services-grid">
+                    <div class="service-item"><h5>Свежесть, порядок и комфорт после каждого сеанса</h5></div>
+                    <div class="service-item"><h5>Щадящее удаление старой шерсти для правильной текстуры</h5></div>
+                    <div class="service-item"><h5>Аккуратно, стильно или весело — как пожелаете</h5></div>
+                    <div class="service-item"><h5>Моментальное избавление от лишнего подшёрстка без дискомфорта</h5></div>
+                </div>
+                <button class="btn" onclick="document.getElementById('uslugi').scrollIntoView({behavior: 'smooth'})">Выбрать услугу</button>
+            </div>
+        </div>
+
+        <div class="uslugi" id="uslugi">
+            <h3 class="title">Услуги</h3>
+            <div class="grid">
+                <div class="cсard">
+                    <div class="card">
+                        <h4>Гигиена</h4>
+                        <div class="fotous">
+                            <img src="img/us1.png" alt="Usluga">
+                        </div>
+                    </div>
+                    <button class="btn" style="padding: 12px 70px" onclick="openModal('modalService1')">Подробнее</button>
+                </div>
+                <div class="cсard">
+                    <div class="card">
+                        <h4>Тримминг</h4>
+                        <div style="padding-top: 23px;"class="fotous">
+                            <img src="img/us2.png" alt="Usluga">
+                        </div>
+                    </div>
+                    <button class="btn" style="padding: 12px 70px" onclick="openModal('modalService2')">Подробнее</button>
+                </div>
+                <div class="cсard">
+                    <div class="card">
+                        <h4>Стрижка</h4>
+                        <div class="fotous">
+                            <img src="img/us3.png" alt="Usluga">
+                        </div>
+                    </div>
+                    <button class="btn" style="padding: 12px 70px" onclick="openModal('modalService3')">Подробнее</button>
+                </div>
+                <div class="сcard">
+                    <div class="card">
+                        <h4>Экспресс-линька</h4>
+                        <div class="fotous">
+                            <img src="img/us4.png" alt="Usluga">
+                        </div>
+                    </div>  
+                    <button class="btn" style="padding: 12px 70px" onclick="openModal('modalService4')">Подробнее</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="completed-section">
+            <h3>Последние работы</h3>
+            <div class="completed-grid" id="completed-grid">
+                <p style="text-align: center; color: #666; width: 100%;">Загрузка...</p>
+            </div>
+        </div>
+
+        <div class="reviews-section" id="reviews-section">
+            <h3>Отзывы наших клиентов</h3>
+            <div id="reviews-container" class="reviews-container">
+                <p style="text-align: center; color: #666; width: 100%;">Загрузка...</p>
+            </div>
+        </div>
+
+        <footer class="footer" id="contacts">
+            <div class="footer-left">
+                <div class="contact-group">
+                    <div class="contact-item">
+                        <img src="img/telefon.png" alt="Phone">
+                        <span class="contact-text">+7 999 999-99-99</span>
+                    </div>
+                    <div class="contact-item">
+                        <img src="img/pochta.png" alt="Email">
+                        <span class="contact-text">groomroomofficial@gmail.com</span>
+                    </div>
+                </div>
+                <div class="contact-group">
+                    <div class="contact-item">
+                        <img src="img/telegram.png" alt="Telegram">
+                        <span class="contact-text">@groomroom_ykt</span>
+                    </div>
+                    <div class="contact-item">
+                        <img src="img/vk.png" alt="VK">
+                        <span class="contact-text">vk.com/groomroom</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-right">
+                <h3>Якутск,<br>Федора Попова 16</h3>
+                <img class="logo-footer" src="logo/logo_groom2.png" alt="Logo">
+            </div>
+        </footer>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Вход в аккаунт</h3>
+                <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="test-2-i-login" id="modalLogin" placeholder="Логин">
+                    <div class="test-2-e-login error-message"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="test-2-i-pass" id="modalPassword" placeholder="Пароль">
+                    <div class="test-2-e-pass error-message"></div>
+                </div>
+                <button class="test-2-b-log btn" onclick="handleModalLogin()">Войти</button>
+                <p style="text-align: center; margin-top: 20px;">
+                    Нет аккаунта? 
+                    <a href="#" onclick="closeModal('loginModal'); openModal('registerModal'); return false;">Зарегистрироваться</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Регистрация</h3>
+                <button class="modal-close" onclick="closeModal('registerModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="test-1-i-fio" id="modalFio" placeholder="ФИО">
+                    <div class="test-1-e-fio error-message"></div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="test-1-i-login" id="modalRegLogin" placeholder="Логин (латиница и дефис)">
+                    <div class="test-1-e-login error-message"></div>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="test-1-i-email" id="modalEmail" placeholder="Email">
+                    <div class="test-1-e-email error-message"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="test-1-i-pass" id="modalRegPassword" placeholder="Пароль (минимум 4 символа)">
+                    <div class="test-1-e-pass error-message"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="test-1-i-pass2" id="modalRegPassword2" placeholder="Повтор пароля">
+                    <div class="test-1-e-pass2 error-message"></div>
+                </div>
+                <div class="form-group checkbox">
+                    <label>
+                        <input type="checkbox" class="test-1-i-agree" id="modalAgree">
+                        Согласие на обработку персональных данных
+                    </label>
+                    <div class="test-1-e-agree error-message"></div>
+                </div>
+                <button class="test-1-b-reg btn" onclick="handleModalRegister()">Зарегистрироваться</button>
+                <p style="text-align: center; margin-top: 20px;">
+                    Уже есть аккаунт? 
+                    <a href="#" onclick="closeModal('registerModal'); openModal('loginModal'); return false;">Войти</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/applications.js"></script>
+    <script src="js/security.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/toast.js"></script>
+    <script>
+        initData().then(() => {
+            const currentUser = getCurrentUser();
+            if (currentUser) {
+                const navRight = document.querySelector('.nav-right');
+                if (navRight) {
+                    const userName = currentUser.fio.split(' ')[0];
+                    navRight.innerHTML = `
+                        <span style="color: white; margin-right: 15px;">👋 Привет, ${escapeHtml(userName)}</span>
+                        <button class="btn-nav" onclick="goToUserCabinet()">Личный кабинет</button>
+                        <button class="btn-nav btn-reg"   onclick="logout()">Выйти</button>
+                    `;
+                }
+            }
+    
+            loadCompletedApps();
+            setupModalClose();
+        });
+        
+        function loadCompletedApps() {
+            const apps = getLastCompletedApplications();
+            const container = document.getElementById('completed-grid');
+            
+            if (!container) return;
+            
+            if (apps.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; width: 100%;">Пока нет завершенных работ</p>';
+                return;
+            }
+            
+            container.innerHTML = apps.map(app => `
+                <div class="completed-card">
+                    <div class="test-t-photo">
+                        <img src="${app.resultPhoto || 'logo/logo_groom1.png'}" alt="${escapeHtml(app.petName)}">
+                    </div>
+                    <div class="test-t-name">${escapeHtml(app.petName)}</div>
+                </div>
+            `).join('');
+        }
+        
+        async function handleModalLogin() {
+            const login = document.getElementById('modalLogin').value;
+            const password = document.getElementById('modalPassword').value;
+            
+            document.querySelector('#loginModal .test-2-e-login').innerHTML = '';
+            document.querySelector('#loginModal .test-2-e-pass').innerHTML = '';
+            
+            const result = await login(login, password);
+            
+            if (result.success) {
+                closeModal('loginModal');
+                if (result.user.role === 'admin') {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'user.html';
+                }
+            } else {
+                document.querySelector('#loginModal .test-2-e-login').innerHTML = result.error;
+            }
+        }
+        
+        async function handleModalRegister() {
+            const fio = document.getElementById('modalFio').value;
+            const login = document.getElementById('modalRegLogin').value;
+            const email = document.getElementById('modalEmail').value;
+            const phone = document.getElementById('modalPhone')?.value || '';
+            const password = document.getElementById('modalRegPassword').value;
+            const password2 = document.getElementById('modalRegPassword2').value;
+            const agree = document.getElementById('modalAgree').checked;
+            
+            document.querySelectorAll('#registerModal .error-message').forEach(el => el.innerHTML = '');
+            
+            const result = await register(fio, login, email, phone, password, password2, agree);
+            
+            if (result.success) {
+                showToast('✅ Регистрация успешна! Теперь вы можете войти.', 'success');
+                closeModal('registerModal');
+                document.getElementById('modalFio').value = '';
+                document.getElementById('modalRegLogin').value = '';
+                document.getElementById('modalEmail').value = '';
+                document.getElementById('modalRegPassword').value = '';
+                document.getElementById('modalRegPassword2').value = '';
+                document.getElementById('modalAgree').checked = false;
+                openModal('loginModal');
+            } else {
+                if (result.errors.fio) document.querySelector('#registerModal .test-1-e-fio').innerHTML = result.errors.fio;
+                if (result.errors.login) document.querySelector('#registerModal .test-1-e-login').innerHTML = result.errors.login;
+                if (result.errors.email) document.querySelector('#registerModal .test-1-e-email').innerHTML = result.errors.email;
+                if (result.errors.password) document.querySelector('#registerModal .test-1-e-pass').innerHTML = result.errors.password;
+                if (result.errors.password2) document.querySelector('#registerModal .test-1-e-pass2').innerHTML = result.errors.password2;
+                if (result.errors.agree) document.querySelector('#registerModal .test-1-e-agree').innerHTML = result.errors.agree;
+            }
+        }
+
+        function openBookingModal(serviceName) {
+            closeModal('modalService1');
+            closeModal('modalService2');
+            closeModal('modalService3');
+            closeModal('modalService4');
+
+            const currentUser = getCurrentUser();
+            if (currentUser) {
+                if (currentUser.role === 'admin') {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'user.html';
+                }
+            } else {
+                openModal('loginModal');
+            }
+        }
+
+        function goToUserCabinet() {
+            const user = getCurrentUser();
+            if (user) {
+                if (user.role === 'admin') {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'user.html';
+                }
+            }
+        }
+        function loadReviews() {
+            const container = document.getElementById('reviews-container');
+            if (container) {
+                container.innerHTML = renderReviewsBlock();
+            }
+        }
+        
+        setupModalClose();
+        loadCompletedApps();
+        loadReviews();
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+    </script>
+    <div id="modalService1" class="modal">
+        <div class="modal-content" style="max-width: 550px;">
+            <div class="modal-header">
+                <h3>🛁 Гигиена</h3>
+                <button class="modal-close" onclick="closeModal('modalService1')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="img/us1.png" alt="Гигиена" style="max-width: 150px; border-radius: 16px;">
+                </div>
+                <p style="margin-bottom: 15px; line-height: 1.6;"><strong>Что входит в процедуру:</strong></p>
+                <ul style="margin-bottom: 20px; padding-left: 20px; line-height: 1.8;">
+                    <li>Мытьё с профессиональной косметикой</li>
+                    <li>Просушивание шерсти феном</li>
+                    <li>Чистка ушей и стрижка когтей</li>
+                    <li>Обработка глаз и гигиенических зон</li>
+                </ul>
+                <p style="margin-bottom: 20px; background: #f9f9f9; padding: 12px; border-radius: 16px; text-align: center;">
+                    <strong>Цена:</strong> от 1500 ₽
+                </p>
+                <button class="btn" style="width: 100%;" onclick="openBookingModal('Гигиена')">Записаться</button>
+            </div>
+        </div>
+    </div>
+    <div id="modalService2" class="modal">
+        <div class="modal-content" style="max-width: 550px;">
+            <div class="modal-header">
+                <h3>✂️ Тримминг</h3>
+                <button class="modal-close" onclick="closeModal('modalService2')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="img/us2.png" alt="Тримминг" style="max-width: 150px; border-radius: 16px;">
+                </div>
+                <p style="margin-bottom: 15px; line-height: 1.6;"><strong>Что входит в процедуру:</strong></p>
+                <ul style="margin-bottom: 20px; padding-left: 20px; line-height: 1.8;">
+                    <li>Удаление отмершей шерсти методом выщипывания</li>
+                    <li>Стимуляция роста новой здоровой шерсти</li>
+                    <li>Улучшение текстуры и цвета шерсти</li>
+                    <li>Профилактика кожных заболеваний</li>
+                </ul>
+                <p style="margin-bottom: 20px; background: #f9f9f9; padding: 12px; border-radius: 16px; text-align: center;">
+                    <strong>Цена:</strong> от 2000 ₽
+                </p>
+                <button class="btn" style="width: 100%;" onclick="openBookingModal('Тримминг')">Записаться</button>
+                </div>
+        </div>
+    </div>
+    <div id="modalService3" class="modal">
+        <div class="modal-content" style="max-width: 550px;">
+            <div class="modal-header">
+                <h3>🐱🐶 Стрижка</h3>
+                <button class="modal-close" onclick="closeModal('modalService3')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="img/us3.png" alt="Стрижка" style="max-width: 150px; border-radius: 16px;">
+                </div>
+                <p style="margin-bottom: 15px; line-height: 1.6;"><strong>Варианты стрижек:</strong></p>
+                <ul style="margin-bottom: 20px; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>Модельная стрижка</strong> — по вашему эскизу или нашему каталогу</li>
+                    <li><strong>Стрижка под машинку</strong> — для жаркого сезона</li>
+                    <li><strong>Гигиеническая стрижка</strong> — лапки, животик, зона под хвостом</li>
+                    <li>Работа с разными типами шерсти и породами</li>
+                </ul>
+                <p style="margin-bottom: 20px; background: #f9f9f9; padding: 12px; border-radius: 16px; text-align: center;">
+                    <strong>Цена:</strong> от 1800 ₽
+                </p>
+                <button class="btn" style="width: 100%;" onclick="openBookingModal('Стрижка')">Записаться</button>
+            </div>
+        </div>
+    </div>
+    <div id="modalService4" class="modal">
+        <div class="modal-content" style="max-width: 550px;">
+            <div class="modal-header">
+                <h3>🍃 Экспресс-линька</h3>
+                <button class="modal-close" onclick="closeModal('modalService4')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="img/us4.png" alt="Экспресс-линька" style="max-width: 150px; border-radius: 16px;">
+                </div>
+                <p style="margin-bottom: 15px; line-height: 1.6;"><strong>Что вас ждёт:</strong></p>
+                <ul style="margin-bottom: 20px; padding-left: 20px; line-height: 1.8;">
+                    <li>Глубокое вычёсывание подшёрстка</li>
+                    <li>Снижение количества шерсти в доме до 90%</li>
+                    <li>Улучшение воздухообмена кожи питомца</li>
+                    <li>Процедура безопасна даже для пугливых собак</li>
+                </ul>
+                <p style="margin-bottom: 20px; background: #f9f9f9; padding: 12px; border-radius: 16px; text-align: center;">
+                    <strong>Цена:</strong> от 1700 ₽
+                </p>
+                <button class="btn" style="width: 100%;" onclick="openBookingModal('Экспресс-линька')">Записаться</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/toast.js"></script>
+</body>
+</html>

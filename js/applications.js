@@ -1,9 +1,3 @@
-const STORAGE_KEYS = {
-    USERS: 'groomroom_users',
-    APPLICATIONS: 'groomroom_applications',
-    CURRENT_USER: 'groomroom_current_user'
-};
-
 function createApplication(petName, petPhoto, userId) {
     const errors = {};
     
@@ -15,15 +9,15 @@ function createApplication(petName, petPhoto, userId) {
         errors.photo = 'Загрузите фото питомца';
     } else if (petPhoto.length > 2 * 1024 * 1024) {
         errors.photo = 'Фото не должно превышать 2 МБ';
-    } else if (!petPhoto.startsWith('data:image/jpeg') && !petPhoto.startsWith('data:image/bmp')) {
-        errors.photo = 'Фото должно быть в формате JPEG или BMP';
+    } else if (!petPhoto.startsWith('data:image/jpeg') && !petPhoto.startsWith('data:image/bmp') && !petPhoto.startsWith('data:image/png')) {
+        errors.photo = 'Фото должно быть в формате JPEG, PNG или BMP';
     }
     
     if (Object.keys(errors).length > 0) {
         return { success: false, errors };
     }
     
-    const applications = JSON.parse(localStorage.getItem(STORAGE_KEYS.APPLICATIONS)) || [];
+    const applications = JSON.parse(localStorage.getItem('groomroom_applications')) || [];
     
     const newApp = {
         id: Date.now(),
@@ -36,13 +30,13 @@ function createApplication(petName, petPhoto, userId) {
     };
     
     applications.unshift(newApp);
-    localStorage.setItem(STORAGE_KEYS.APPLICATIONS, JSON.stringify(applications));
+    localStorage.setItem('groomroom_applications', JSON.stringify(applications));
     
     return { success: true, application: newApp };
 }
 
 function getUserApplications(userId) {
-    const applications = JSON.parse(localStorage.getItem(STORAGE_KEYS.APPLICATIONS)) || [];
+    const applications = JSON.parse(localStorage.getItem('groomroom_applications')) || [];
     return applications.filter(app => app.userId === userId).map(app => ({
         ...app,
         service: app.service || 'Услуга не указана',
@@ -52,11 +46,11 @@ function getUserApplications(userId) {
 }
 
 function getAllApplications() {
-    return JSON.parse(localStorage.getItem(STORAGE_KEYS.APPLICATIONS)) || [];
+    return JSON.parse(localStorage.getItem('groomroom_applications')) || [];
 }
 
 function deleteApplication(appId, userId) {
-    const applications = JSON.parse(localStorage.getItem(STORAGE_KEYS.APPLICATIONS)) || [];
+    const applications = JSON.parse(localStorage.getItem('groomroom_applications')) || [];
     const appIndex = applications.findIndex(app => app.id === appId);
     
     if (appIndex === -1) return { success: false, error: 'Заявка не найдена' };
@@ -72,13 +66,13 @@ function deleteApplication(appId, userId) {
     }
     
     applications.splice(appIndex, 1);
-    localStorage.setItem(STORAGE_KEYS.APPLICATIONS, JSON.stringify(applications));
+    localStorage.setItem('groomroom_applications', JSON.stringify(applications));
     
     return { success: true };
 }
 
 function updateApplicationStatus(appId, newStatus, resultPhoto = null) {
-    const applications = JSON.parse(localStorage.getItem(STORAGE_KEYS.APPLICATIONS)) || [];
+    const applications = JSON.parse(localStorage.getItem('groomroom_applications')) || [];
     const appIndex = applications.findIndex(app => app.id === appId);
     
     if (appIndex === -1) return { success: false, error: 'Заявка не найдена' };
@@ -107,13 +101,13 @@ function updateApplicationStatus(appId, newStatus, resultPhoto = null) {
     }
     
     applications[appIndex] = app;
-    localStorage.setItem(STORAGE_KEYS.APPLICATIONS, JSON.stringify(applications));
+    localStorage.setItem('groomroom_applications', JSON.stringify(applications));
     
     return { success: true, application: app };
 }
 
 function getLastCompletedApplications() {
-    const applications = JSON.parse(localStorage.getItem(STORAGE_KEYS.APPLICATIONS)) || [];
+    const applications = JSON.parse(localStorage.getItem('groomroom_applications')) || [];
     const completed = applications.filter(app => app.status === 'Услуга оказана' && app.resultPhoto);
     return completed.slice(0, 4);
 }
@@ -134,7 +128,9 @@ function getStatusClass(status) {
     }
 }
 
-function createApplicationFull(petName, petPhoto, userId, service, appointmentDate, additionalMessage) {
+window.createApplicationFull = function(petName, petPhoto, userId, service, appointmentDate, additionalMessage) {
+    console.log('createApplicationFull вызвана', { petName, userId, service, appointmentDate });
+    
     const errors = {};
     
     if (!petName || petName.trim() === '') {
@@ -151,7 +147,7 @@ function createApplicationFull(petName, petPhoto, userId, service, appointmentDa
         return { success: false, errors };
     }
     
-    const applications = JSON.parse(localStorage.getItem(STORAGE_KEYS.APPLICATIONS)) || [];
+    const applications = JSON.parse(localStorage.getItem('groomroom_applications') || '[]');
     
     const newApp = {
         id: Date.now(),
@@ -167,7 +163,19 @@ function createApplicationFull(petName, petPhoto, userId, service, appointmentDa
     };
     
     applications.unshift(newApp);
-    localStorage.setItem(STORAGE_KEYS.APPLICATIONS, JSON.stringify(applications));
+    localStorage.setItem('groomroom_applications', JSON.stringify(applications));
+    
+    console.log('Заявка создана, всего заявок:', applications.length);
     
     return { success: true, application: newApp };
-}
+};
+
+window.getUserApplications = getUserApplications;
+window.getAllApplications = getAllApplications;
+window.deleteApplication = deleteApplication;
+window.updateApplicationStatus = updateApplicationStatus;
+window.getLastCompletedApplications = getLastCompletedApplications;
+window.escapeHtml = escapeHtml;
+window.getStatusClass = getStatusClass;
+
+console.log('applications.js загружен');

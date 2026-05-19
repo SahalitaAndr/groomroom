@@ -1,15 +1,18 @@
 const CHAT_KEY = 'groomroom_chats';
 
-function initChat(applicationId, petName, userId, isAdmin = false) {
+function initChat(applicationId, petName, userId, userName, isAdmin = false) {
     let chats = JSON.parse(localStorage.getItem(CHAT_KEY) || '{}');
     
     if (!chats[applicationId]) {
         chats[applicationId] = {
             messages: [],
             petName: petName,
+            clientName: userName, // Сохраняем имя клиента
+            clientId: userId,      // Сохраняем ID клиента
             createdAt: new Date().toISOString(),
             lastMessageAt: null
         };
+        localStorage.setItem(CHAT_KEY, JSON.stringify(chats));
     }
     
     return chats[applicationId];
@@ -30,9 +33,17 @@ function sendMessage(applicationId, userId, userName, message, isAdmin = false) 
         chats[applicationId] = {
             messages: [],
             petName: '',
+            clientName: userName,
+            clientId: userId,
             createdAt: new Date().toISOString(),
             lastMessageAt: null
         };
+    }
+    
+    // Если имя клиента ещё не сохранено, сохраняем
+    if (!chats[applicationId].clientName && !isAdmin) {
+        chats[applicationId].clientName = userName;
+        chats[applicationId].clientId = userId;
     }
     
     chats[applicationId].messages.push({
@@ -42,7 +53,7 @@ function sendMessage(applicationId, userId, userName, message, isAdmin = false) 
         message: messageText,
         timestamp: new Date().toISOString(),
         isAdmin: isAdmin,
-        isRead: isAdmin // Админ сразу читает
+        isRead: isAdmin
     });
     
     chats[applicationId].lastMessageAt = new Date().toISOString();
@@ -54,13 +65,20 @@ function sendMessage(applicationId, userId, userName, message, isAdmin = false) 
         showToast(`Сообщение отправлено мастеру`, 'success');
     }
     
-    auditLog('send_message', userId, { applicationId, messageLength: messageText.length });
+    if (typeof auditLog === 'function') {
+        auditLog('send_message', userId, { applicationId, messageLength: messageText.length });
+    }
     return true;
 }
 
 function getChatMessages(applicationId) {
     const chats = JSON.parse(localStorage.getItem(CHAT_KEY) || '{}');
     return chats[applicationId]?.messages || [];
+}
+
+function getChatInfo(applicationId) {
+    const chats = JSON.parse(localStorage.getItem(CHAT_KEY) || '{}');
+    return chats[applicationId] || null;
 }
 
 function markMessagesAsRead(applicationId, userId) {
@@ -86,6 +104,9 @@ function getUnreadCount(userId) {
 
 function renderChatModal(applicationId, petName, userId, userName, isAdmin = false) {
     const messages = getChatMessages(applicationId);
+    const chatInfo = getChatInfo(applicationId);
+    const displayName = isAdmin && chatInfo?.clientName ? chatInfo.clientName : userName;
+    const subText = isAdmin ? `Чат с клиентом - ${sanitizeInput(displayName)}` : 'Чат с мастером';
     
     return `
         <div class="chat-container" id="chat-container-${applicationId}">
@@ -94,22 +115,27 @@ function renderChatModal(applicationId, petName, userId, userName, isAdmin = fal
                     <span class="chat-pet-avatar">🐾</span>
                     <div>
                         <strong>${sanitizeInput(petName)}</strong>
-                        <small>Чат с мастером</small>
+                        <small>${subText}</small>
                     </div>
                 </div>
                 <button class="chat-minimize" onclick="toggleChat('${applicationId}')">−</button>
             </div>
             <div class="chat-messages" id="chat-messages-${applicationId}">
                 ${messages.map(msg => `
-                    <div class="chat-message ${msg.userId === userId ? 'my-message' : 'their-message'}">
-                        <div class="chat-message-text">${escapeHtml(msg.message)}</div>
-                        <div class="chat-message-time">${new Date(msg.timestamp).toLocaleTimeString()}</div>
-                        ${msg.isRead ? '<span class="read-status">✓✓</span>' : '<span class="read-status">✓</span>'}
+                    <div class="chat-message ${msg.userId == userId ? 'my-message' : 'their-message'}">
+                        <div class="chat-message-text">
+                            ${!isAdmin && msg.isAdmin ? '👑 ' : ''}${escapeHtml(msg.message)}
+                        </div>
+                        <div class="chat-message-time">
+                            ${new Date(msg.timestamp).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}
+                            ${msg.userName && msg.userId != userId ? `<span style="margin-left: 5px;">(${escapeHtml(msg.userName.split(' ')[0])})</span>` : ''}
+                        </div>
+                        ${msg.userId == userId ? (msg.isRead ? '<span class="read-status">✓✓</span>' : '<span class="read-status">✓</span>') : ''}
                     </div>
                 `).join('')}
             </div>
             <div class="chat-input-area">
-                <textarea id="chat-input-${applicationId}" placeholder="Напишите сообщение мастеру..." rows="2"></textarea>
+                <textarea id="chat-input-${applicationId}" placeholder="Напишите сообщение..." rows="2"></textarea>
                 <button class="chat-send-btn" onclick="sendChatMessage(${applicationId}, '${userId}', '${sanitizeInput(userName)}', ${isAdmin})">📤</button>
             </div>
         </div>
@@ -132,11 +158,19 @@ function refreshChatMessages(applicationId, userId, userName, isAdmin) {
     if (!messagesContainer) return;
     
     const messages = getChatMessages(applicationId);
+    const chatInfo = getChatInfo(applicationId);
+    const displayName = isAdmin && chatInfo?.clientName ? chatInfo.clientName : userName;
+    
     messagesContainer.innerHTML = messages.map(msg => `
-        <div class="chat-message ${msg.userId === userId ? 'my-message' : 'their-message'}">
-            <div class="chat-message-text">${escapeHtml(msg.message)}</div>
-            <div class="chat-message-time">${new Date(msg.timestamp).toLocaleTimeString()}</div>
-            ${msg.isRead ? '<span class="read-status">✓✓</span>' : '<span class="read-status">✓</span>'}
+        <div class="chat-message ${msg.userId == userId ? 'my-message' : 'their-message'}">
+            <div class="chat-message-text">
+                ${!isAdmin && msg.isAdmin ? '👑 ' : ''}${escapeHtml(msg.message)}
+            </div>
+            <div class="chat-message-time">
+                ${new Date(msg.timestamp).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}
+                ${msg.userName && msg.userId != userId ? `<span style="margin-left: 5px;">(${escapeHtml(msg.userName.split(' ')[0])})</span>` : ''}
+            </div>
+            ${msg.userId == userId ? (msg.isRead ? '<span class="read-status">✓✓</span>' : '<span class="read-status">✓</span>') : ''}
         </div>
     `).join('');
     
@@ -146,9 +180,11 @@ function refreshChatMessages(applicationId, userId, userName, isAdmin) {
 
 function toggleChat(applicationId) {
     const container = document.getElementById(`chat-container-${applicationId}`);
-    if (container.classList.contains('chat-minimized')) {
-        container.classList.remove('chat-minimized');
-    } else {
-        container.classList.add('chat-minimized');
+    if (container) {
+        if (container.classList.contains('chat-minimized')) {
+            container.classList.remove('chat-minimized');
+        } else {
+            container.classList.add('chat-minimized');
+        }
     }
 }

@@ -7,12 +7,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff;
+            min-height: 100vh;
+        }
+
         .profile-container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
-        
+
         .profile-card {
             background: white;
             border-radius: 32px;
@@ -20,7 +32,7 @@
             overflow: hidden;
             margin-bottom: 40px;
         }
-        
+
         .profile-header {
             background: linear-gradient(135deg, #89c1ed 0%, #7eb6df 100%);
             padding: 20px 30px;
@@ -30,14 +42,14 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-        
+
         .profile-header h3 {
             color: white;
             font-size: 28px;
             margin: 0;
             font-family: 'Caveat', cursive;
         }
-        
+
         .logout-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
@@ -49,16 +61,16 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .logout-btn:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.02);
         }
-        
+
         .profile-body {
             padding: 40px;
         }
-        
+
         .profile-info {
             display: flex;
             align-items: center;
@@ -66,7 +78,7 @@
             margin-bottom: 40px;
             flex-wrap: wrap;
         }
-        
+
         .pet-avatar {
             position: relative;
             width: 100px;
@@ -79,12 +91,12 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             flex-shrink: 0;
         }
-        
+
         .pet-avatar:hover {
             transform: scale(1.02);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
-        
+
         .pet-avatar img {
             width: 70%;
             height: 70%;
@@ -94,7 +106,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-        
+
         .avatar-edit-overlay {
             position: absolute;
             bottom: 0;
@@ -109,22 +121,22 @@
             transition: opacity 0.3s;
             font-weight: 500;
         }
-        
+
         .pet-avatar:hover .avatar-edit-overlay {
             opacity: 1;
         }
-        
+
         .user-details {
             flex: 1;
         }
-        
+
         .user-name {
             font-size: 24px;
             font-weight: 600;
             color: #333;
             margin-bottom: 8px;
         }
-        
+
         .pet-name-display {
             font-size: 16px;
             color: #89c1ed;
@@ -135,13 +147,13 @@
             gap: 8px;
             flex-wrap: wrap;
         }
-        
+
         .pet-name-display span {
             background: #f0f8ff;
             padding: 4px 12px;
             border-radius: 20px;
         }
-        
+
         .edit-pet-name {
             background: none;
             border: none;
@@ -152,18 +164,18 @@
             border-radius: 20px;
             transition: all 0.3s;
         }
-        
+
         .edit-pet-name:hover {
             background: #89c1ed20;
         }
-        
+
         .contact-info {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
             margin-top: 5px;
         }
-        
+
         .contact-item-small {
             display: flex;
             align-items: center;
@@ -174,16 +186,16 @@
             font-size: 13px;
             transition: all 0.3s;
         }
-        
+
         .contact-item-small:hover {
             background: #e8e8e8;
         }
-        
+
         .contact-item-small img {
             width: 16px;
             height: 16px;
         }
-        
+
         .contact-item-small input {
             border: none;
             background: transparent;
@@ -193,12 +205,12 @@
             min-width: 120px;
             padding: 0;
         }
-        
+
         .contact-item-small input:focus {
             outline: none;
             border-bottom: 1px dashed #89c1ed;
         }
-        
+
         .calendar-card {
             background: white;
             border-radius: 32px;
@@ -206,7 +218,7 @@
             margin-bottom: 40px;
             overflow: hidden;
         }
-        
+
         .calendar-header {
             background: linear-gradient(135deg, #89c1ed 0%, #7eb6df 100%);
             padding: 20px 30px;
@@ -216,22 +228,22 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-        
+
         .calendar-header h4 {
             color: white;
             font-size: 24px;
             margin: 0;
             font-family: 'Caveat', cursive;
         }
-        
+
         .calendar-nav {
             display: flex;
             gap: 15px;
             align-items: center;
         }
-        
+
         .calendar-nav button {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             border: none;
             width: 36px;
             height: 36px;
@@ -241,12 +253,12 @@
             color: white;
             transition: all 0.3s;
         }
-        
+
         .calendar-nav button:hover {
-            background: rgba(255,255,255,0.4);
+            background: rgba(255, 255, 255, 0.4);
             transform: scale(1.05);
         }
-        
+
         .current-month {
             font-size: 16px;
             font-weight: 600;
@@ -254,7 +266,7 @@
             min-width: 140px;
             text-align: center;
         }
-        
+
         .calendar-legend {
             padding: 12px 30px;
             display: flex;
@@ -263,57 +275,57 @@
             border-bottom: 1px solid #f0f0f0;
             background: #fafafa;
         }
-        
+
         .legend-item {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 12px;
         }
-        
+
         .legend-color {
             width: 20px;
             height: 20px;
             border-radius: 50%;
         }
-        
+
         .legend-color.red {
             background: #ff6b6b;
         }
-        
+
         .legend-color.green {
             background: #51cf66;
         }
-        
+
         .legend-color.default {
             background: #e9ecef;
             border: 1px solid #dee2e6;
         }
-        
+
         .calendar-grid {
             padding: 20px 30px;
         }
-        
+
         .weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             text-align: center;
             margin-bottom: 15px;
         }
-        
+
         .weekday {
             font-weight: 600;
             color: #89c1ed;
             padding: 8px;
             font-size: 13px;
         }
-        
+
         .calendar-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 8px;
         }
-        
+
         .calendar-day {
             aspect-ratio: 1;
             background: #f8f9fa;
@@ -326,90 +338,94 @@
             position: relative;
             min-height: 70px;
         }
-        
+
         .calendar-day.busy {
             background: #ffe8e8;
             cursor: not-allowed;
             opacity: 0.7;
         }
-        
+
         .calendar-day.free {
             background: #e8f5e9;
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .calendar-day.free:hover {
             transform: scale(1.02);
             background: #c8e6c9;
         }
-        
+
         .calendar-day.default {
             cursor: pointer;
         }
-        
+
         .calendar-day.default:hover {
             background: #e9ecef;
         }
-        
+
         .calendar-day.selected {
             border: 2px solid #89c1ed;
             background: #e3f2fd;
         }
-        
+
         .day-number {
             font-size: 16px;
             font-weight: 600;
         }
-        
+
         .day-status-icon {
             font-size: 12px;
             margin-top: 4px;
         }
-        
+
         .calendar-day.empty {
             background: transparent;
             cursor: default;
             border: 1px dashed #e0e0e0;
         }
-        
+
+        .calendar-day.empty:hover {
+            transform: none;
+            background: transparent;
+        }
+
         .form-card {
             background: white;
             border-radius: 32px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
             margin-bottom: 40px;
             overflow: hidden;
-            padding: 0px 0px 30px 0px;
         }
-        
+
         .form-header {
             background: linear-gradient(135deg, #89c1ed 0%, #7eb6df 100%);
             padding: 20px 30px;
         }
-        
+
         .form-header h4 {
             color: white;
             font-size: 24px;
             margin: 0;
             font-family: 'Caveat', cursive;
         }
-        
+
         .form-body {
             padding: 30px;
         }
-        
+
         .form-row {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
             margin-bottom: 20px;
         }
-        
+
         .form-group {
             flex: 1;
             min-width: 200px;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
@@ -417,7 +433,7 @@
             font-size: 14px;
             color: #333;
         }
-        
+
         select, input[type="text"], input[type="date"], textarea {
             width: 100%;
             padding: 12px 16px;
@@ -427,18 +443,25 @@
             font-size: 14px;
             transition: all 0.3s;
         }
-        
+
         select:focus, input:focus, textarea:focus {
             outline: none;
             border-color: #89c1ed;
         }
-        
+
         textarea {
             border-radius: 20px;
             resize: vertical;
             min-height: 80px;
         }
-        
+
+        .error-message {
+            color: #fe99c5;
+            font-size: 12px;
+            margin-top: 5px;
+            padding-left: 16px;
+        }
+
         .photo-preview {
             width: 80px;
             height: 80px;
@@ -447,30 +470,74 @@
             margin-top: 10px;
             background: #f0f0f0;
         }
-        
+
         .photo-preview img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         .date-warning {
             font-size: 12px;
             padding: 8px 12px;
             border-radius: 20px;
             margin-top: 8px;
         }
-        
+
         .date-warning.warning {
             background: #fff3e0;
             color: #e67700;
         }
-        
+
         .date-warning.success {
             background: #e8f5e9;
             color: #2e7d32;
         }
-        
+
+        .btn-submit {
+            background: #fe99c5;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 40px;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background: #ff85b8;
+            transform: scale(1.02);
+        }
+
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .applications-card {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .applications-header {
+            background: linear-gradient(135deg, #89c1ed 0%, #7eb6df 100%);
+            padding: 20px 30px;
+        }
+
+        .applications-header h4 {
+            color: white;
+            font-size: 24px;
+            margin: 0;
+            font-family: 'Caveat', cursive;
+        }
+
         .filters-section {
             margin-bottom: 25px;
             display: flex;
@@ -478,7 +545,7 @@
             flex-wrap: wrap;
             align-items: center;
         }
-        
+
         .filter-btn {
             padding: 8px 20px;
             border: 2px solid #e0e0e0;
@@ -489,43 +556,23 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .filter-btn.active {
             background: #89c1ed;
             color: white;
             border-color: #89c1ed;
         }
-        
+
         .filter-btn:hover:not(.active) {
             border-color: #89c1ed;
         }
-        
-        .applications-card {
-            background: white;
-            border-radius: 32px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
 
-        }
-        
-        .applications-header {
-            background: linear-gradient(135deg, #89c1ed 0%, #7eb6df 100%);
-            padding: 20px 30px;
-        }
-        
-        .applications-header h4 {
-            color: white;
-            font-size: 24px;
-            margin: 0;
-            font-family: 'Caveat', cursive;
-        }
-        
         .applications-list {
             padding: 20px 30px;
             max-height: 600px;
             overflow-y: auto;
         }
-        
+
         .application-card {
             background: #f8f9fa;
             border-radius: 20px;
@@ -539,16 +586,16 @@
             transition: all 0.3s;
             cursor: pointer;
         }
-        
+
         .application-card:hover {
             transform: translateX(5px);
             background: #f1f3f5;
         }
-        
+
         .app-info {
             flex: 2;
         }
-        
+
         .app-pet-name {
             font-weight: 700;
             font-size: 18px;
@@ -558,49 +605,61 @@
             gap: 10px;
             flex-wrap: wrap;
         }
-        
+
         .app-pet-photo-mini {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
         }
-        
+
         .app-service {
             font-size: 13px;
             color: #89c1ed;
             margin-top: 5px;
         }
-        
+
         .app-date {
             font-size: 12px;
             color: #868e96;
             margin-top: 3px;
         }
-        
+
         .app-message {
             font-size: 12px;
             color: #666;
             margin-top: 5px;
             font-style: italic;
         }
-        
+
+        /* Статусы */
         .status-badge {
             padding: 6px 16px;
             border-radius: 30px;
             font-size: 13px;
             font-weight: 600;
         }
-        
-        .status-new { background: #fe99c5; color: white; }
-        .status-processing { background: #89c1ed; color: white; }
-        .status-completed { background: #51cf66; color: white; }
-        
+
+        .status-new {
+            background: #fe99c5;
+            color: white;
+        }
+
+        .status-processing {
+            background: #89c1ed;
+            color: white;
+        }
+
+        .status-completed {
+            background: #51cf66;
+            color: white;
+        }
+
         .app-actions {
             display: flex;
             gap: 10px;
         }
-        
+
         .action-btn {
             background: none;
             border: none;
@@ -610,38 +669,374 @@
             border-radius: 50%;
             transition: all 0.3s;
         }
-        
+
         .action-btn.delete:hover {
             background: #ffebee;
             color: #f44336;
         }
-        
+
         .action-btn.view:hover {
             background: #e3f2fd;
             color: #89c1ed;
         }
-        
+
         .action-btn.disabled {
             opacity: 0.3;
             cursor: not-allowed;
         }
-        
+
         .empty-state {
             text-align: center;
             padding: 60px;
             color: #adb5bd;
+            font-size: 16px;
         }
-        
+
+        .empty-state::before {
+            content: "🐾";
+            display: block;
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 32px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 28px;
+            font-family: 'Caveat', cursive;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: #fe99c5;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
         .photo-modal .modal-content {
             max-width: 500px;
         }
-        
+
         .full-photo {
             width: 100%;
             border-radius: 20px;
             margin-bottom: 20px;
         }
-        
+
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            max-width: calc(100vw - 40px);
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .chat-container.chat-minimized {
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #89c1ed, #7eb6df);
+            padding: 12px 16px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .chat-pet-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-pet-avatar {
+            font-size: 24px;
+        }
+
+        .chat-minimize {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 20px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            height: 350px;
+            overflow-y: auto;
+            padding: 16px;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            position: relative;
+        }
+
+        .chat-message.my-message {
+            background: #89c1ed;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-message.their-message {
+            background: white;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-message-text {
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+        .chat-message-time {
+            font-size: 10px;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+
+        .read-status {
+            font-size: 10px;
+            margin-left: 8px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 12px;
+            background: white;
+            border-top: 1px solid #eee;
+            gap: 8px;
+        }
+
+        .chat-input-area textarea {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 8px 12px;
+            resize: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+        }
+
+        .chat-send-btn {
+            background: #fe99c5;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chat-send-btn:hover {
+            transform: scale(1.05);
+            background: #ff85b8;
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fe99c5, #ff85b8);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1099;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-button .unread-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4444;
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 20px;
+            min-width: 18px;
+        }
+
+        .review-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 14px;
+            background: #fe99c5;
+            border: none;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .rating-input {
+            margin: 20px 0;
+        }
+
+        .stars-input {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .star {
+            font-size: 28px;
+            cursor: pointer;
+            color: #ddd;
+            transition: all 0.2s;
+        }
+
+        .star:hover {
+            color: #ffc107;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); background: linear-gradient(135deg, #fe99c5, #ff85b8); }
+            50% { transform: scale(1.1); background: linear-gradient(135deg, #ff85b8, #fe99c5); }
+            100% { transform: scale(1); background: linear-gradient(135deg, #fe99c5, #ff85b8); }
+        }
+
+        .calendar-card, .form-card, .applications-card {
+            animation: slideIn 0.4s ease-out;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #89c1ed;
+            border-radius: 10px;
+        }
+
         @media (max-width: 768px) {
             .profile-container {
                 padding: 15px;
@@ -684,31 +1079,665 @@
             .app-actions {
                 justify-content: center;
             }
+            
+            .chat-container {
+                width: calc(100% - 30px);
+                left: 15px;
+                right: 15px;
+            }
+            
+            .chat-messages {
+                height: 280px;
+            }
+            
+            .chat-button {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+                bottom: 12px;
+                right: 12px;
+            }
+            
+            .empty-state {
+                padding: 40px;
+            }
         }
-        
-        .btn-submit {
-            background: #fe99c5;
-            border: none;
-            padding: 14px 30px;
-            border-radius: 40px;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
+
+        @media (max-width: 480px) {
+            .profile-container {
+                padding: 12px !important;
+            }
+            
+            .profile-header {
+                flex-direction: column !important;
+                text-align: center !important;
+                padding: 16px !important;
+            }
+            
+            .profile-header h3 {
+                font-size: 22px !important;
+            }
+            
+            .logout-btn {
+                width: 100% !important;
+                padding: 8px 16px !important;
+            }
+            
+            .profile-body {
+                padding: 16px !important;
+            }
+            
+            .profile-info {
+                gap: 20px !important;
+            }
+            
+            .pet-avatar {
+                width: 80px !important;
+                height: 80px !important;
+                margin: 0 auto !important;
+            }
+            
+            .user-name {
+                font-size: 20px !important;
+            }
+            
+            .pet-name-display {
+                font-size: 14px !important;
+                justify-content: center !important;
+            }
+            
+            .contact-info {
+                gap: 12px !important;
+                justify-content: center;
+            }
+            
+            .contact-item-small {
+                padding: 5px 12px !important;
+                font-size: 11px !important;
+            }
+            
+            .contact-item-small input {
+                font-size: 11px !important;
+                min-width: 100px;
+            }
+            
+            /* Календарь */
+            .calendar-header {
+                flex-direction: column !important;
+                text-align: center !important;
+                padding: 14px !important;
+            }
+            
+            .calendar-header h4 {
+                font-size: 20px !important;
+                margin-bottom: 8px;
+            }
+            
+            .calendar-nav button {
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 16px !important;
+            }
+            
+            .current-month {
+                font-size: 13px !important;
+                min-width: 120px;
+            }
+            
+            .calendar-legend {
+                padding: 10px 12px !important;
+                gap: 12px;
+                justify-content: center;
+            }
+            
+            .legend-item {
+                font-size: 10px !important;
+            }
+            
+            .legend-color {
+                width: 18px !important;
+                height: 18px !important;
+            }
+            
+            .calendar-grid {
+                padding: 12px !important;
+            }
+            
+            .weekday {
+                font-size: 10px !important;
+                padding: 5px !important;
+            }
+            
+            .calendar-days {
+                gap: 5px;
+            }
+            
+            .calendar-day {
+                min-height: 50px !important;
+                border-radius: 12px;
+            }
+            
+            .day-number {
+                font-size: 12px !important;
+            }
+            
+            .day-status-icon {
+                font-size: 10px !important;
+            }
+            
+            /* Форма */
+            .form-header {
+                padding: 14px !important;
+                text-align: center;
+            }
+            
+            .form-header h4 {
+                font-size: 20px !important;
+            }
+            
+            .form-body {
+                padding: 16px !important;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .form-group {
+                min-width: 100%;
+            }
+            
+            .form-group label {
+                font-size: 13px !important;
+            }
+            
+            select, input[type="text"], input[type="date"], textarea {
+                padding: 10px 14px !important;
+                font-size: 13px !important;
+            }
+            
+            .btn-submit {
+                padding: 12px 20px !important;
+                font-size: 15px !important;
+            }
+            
+            .photo-preview {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            .applications-header {
+                padding: 14px !important;
+                text-align: center;
+            }
+            
+            .applications-header h4 {
+                font-size: 20px !important;
+            }
+            
+            .filters-section {
+                gap: 8px !important;
+                justify-content: center;
+            }
+            
+            .filter-btn {
+                padding: 6px 14px !important;
+                font-size: 11px !important;
+            }
+            
+            .applications-list {
+                padding: 14px !important;
+            }
+            
+            .application-card {
+                padding: 14px !important;
+                flex-direction: column !important;
+                text-align: center !important;
+            }
+            
+            .app-pet-name {
+                font-size: 16px !important;
+                justify-content: center;
+            }
+            
+            .app-pet-photo-mini {
+                width: 35px !important;
+                height: 35px !important;
+            }
+            
+            .app-service, .app-date, .app-message {
+                font-size: 11px !important;
+            }
+            
+            .status-badge {
+                padding: 4px 12px !important;
+                font-size: 11px !important;
+            }
+            
+            .app-actions {
+                justify-content: center;
+                gap: 8px;
+            }
+            
+            .action-btn {
+                font-size: 18px !important;
+                padding: 6px !important;
+            }
+            
+            /* Модалки */
+            .modal-content {
+                width: 95% !important;
+                margin: 10px auto !important;
+                border-radius: 24px !important;
+            }
+            
+            .modal-header {
+                padding: 14px 18px !important;
+            }
+            
+            .modal-header h3 {
+                font-size: 22px !important;
+            }
+            
+            .modal-body {
+                padding: 18px !important;
+            }
+            
+            .modal-close {
+                font-size: 24px !important;
+            }
+            
+            .chat-container {
+                width: calc(100% - 20px) !important;
+                left: 10px !important;
+                right: 10px !important;
+                bottom: 10px !important;
+            }
+            
+            .chat-messages {
+                height: 250px !important;
+            }
+            
+            .chat-message-text {
+                font-size: 12px !important;
+            }
+            
+            .chat-send-btn {
+                width: 38px !important;
+                height: 38px !important;
+                font-size: 16px !important;
+            }
+            
+            .chat-button {
+                width: 48px !important;
+                height: 48px !important;
+                font-size: 20px !important;
+                bottom: 12px !important;
+                right: 12px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            
+            .stars-input {
+                gap: 5px;
+            }
+            
+            .star {
+                font-size: 24px !important;
+            }
+            
+            .review-buttons .btn,
+            .review-buttons .btn-small {
+                padding: 6px 12px !important;
+                font-size: 12px !important;
+            }
+            
+            .empty-state {
+                padding: 30px 20px !important;
+                font-size: 13px;
+            }
+            
+            .empty-state::before {
+                font-size: 36px;
+            }
         }
-        
-        .btn-submit:hover {
-            background: #ff85b8;
-            transform: scale(1.02);
+
+        @media (max-width: 380px) {
+            .profile-container {
+                padding: 5px !important;
+            }
+            
+            .profile-header {
+                padding: 10px 12px !important;
+            }
+            
+            .profile-header h3 {
+                font-size: 18px !important;
+            }
+            
+            .logout-btn {
+                padding: 6px 12px !important;
+                font-size: 11px !important;
+            }
+            
+            .profile-body {
+                padding: 10px !important;
+            }
+            
+            .profile-info {
+                gap: 10px !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .pet-avatar {
+                width: 55px !important;
+                height: 55px !important;
+            }
+            
+            .user-name {
+                font-size: 16px !important;
+            }
+            
+            .pet-name-display {
+                font-size: 11px !important;
+            }
+            
+            .contact-item-small {
+                padding: 3px 8px !important;
+                font-size: 9px !important;
+            }
+            
+            .contact-item-small input {
+                font-size: 9px !important;
+                min-width: 80px !important;
+            }
+            
+            .calendar-header {
+                padding: 8px 10px !important;
+            }
+            
+            .calendar-header h4 {
+                font-size: 14px !important;
+            }
+            
+            .calendar-nav button {
+                width: 26px !important;
+                height: 26px !important;
+                font-size: 12px !important;
+            }
+            
+            .current-month {
+                font-size: 10px !important;
+                min-width: 95px !important;
+            }
+            
+            .calendar-legend {
+                padding: 5px 8px !important;
+                gap: 6px !important;
+            }
+            
+            .legend-item {
+                font-size: 7px !important;
+            }
+            
+            .legend-color {
+                width: 12px !important;
+                height: 12px !important;
+            }
+            
+            .calendar-grid {
+                padding: 6px !important;
+            }
+            
+            .weekday {
+                font-size: 7px !important;
+                padding: 3px !important;
+            }
+            
+            .calendar-days {
+                gap: 3px !important;
+            }
+            
+            .calendar-day {
+                min-height: 38px !important;
+                border-radius: 6px !important;
+            }
+            
+            .day-number {
+                font-size: 9px !important;
+            }
+            
+            .day-status-icon {
+                font-size: 7px !important;
+                margin-top: 1px !important;
+            }
+            
+            .form-header {
+                padding: 8px 10px !important;
+            }
+            
+            .form-header h4 {
+                font-size: 14px !important;
+            }
+            
+            .form-body {
+                padding: 8px !important;
+            }
+            
+            .form-row {
+                gap: 8px !important;
+            }
+            
+            .form-group label {
+                font-size: 10px !important;
+                margin-bottom: 3px !important;
+            }
+            
+            select, input[type="text"], input[type="date"], textarea {
+                padding: 6px 8px !important;
+                font-size: 11px !important;
+                border-radius: 20px !important;
+            }
+            
+            .btn-submit {
+                padding: 8px 12px !important;
+                font-size: 12px !important;
+            }
+            
+            .photo-preview {
+                width: 45px !important;
+                height: 45px !important;
+            }
+            
+            .date-warning {
+                font-size: 8px !important;
+                padding: 4px 6px !important;
+            }
+            
+            .applications-header {
+                padding: 8px 10px !important;
+            }
+            
+            .applications-header h4 {
+                font-size: 14px !important;
+            }
+            
+            .filters-section {
+                gap: 4px !important;
+                padding: 0 0 8px 0 !important;
+            }
+            
+            .filter-btn {
+                padding: 3px 8px !important;
+                font-size: 9px !important;
+                border-radius: 20px !important;
+            }
+            
+            .applications-list {
+                padding: 8px !important;
+            }
+            
+            .application-card {
+                padding: 8px !important;
+                gap: 6px !important;
+            }
+            
+            .app-pet-name {
+                font-size: 12px !important;
+                gap: 4px !important;
+            }
+            
+            .app-pet-photo-mini {
+                width: 25px !important;
+                height: 25px !important;
+            }
+            
+            .app-service, .app-date, .app-message {
+                font-size: 9px !important;
+            }
+            
+            .status-badge {
+                padding: 2px 8px !important;
+                font-size: 9px !important;
+            }
+            
+            .action-btn {
+                font-size: 14px !important;
+                padding: 3px !important;
+            }
+            
+            .modal-content {
+                width: 98% !important;
+                margin: 5px auto !important;
+                border-radius: 16px !important;
+            }
+            
+            .modal-header {
+                padding: 8px 12px !important;
+            }
+            
+            .modal-header h3 {
+                font-size: 16px !important;
+            }
+            
+            .modal-body {
+                padding: 10px !important;
+            }
+            
+            .modal-close {
+                font-size: 18px !important;
+                width: 24px !important;
+                height: 24px !important;
+            }
+            
+            .chat-container {
+                width: calc(100% - 16px) !important;
+                left: 8px !important;
+                right: 8px !important;
+                bottom: 8px !important;
+                border-radius: 12px !important;
+            }
+            
+            .chat-header {
+                padding: 6px 8px !important;
+            }
+            
+            .chat-pet-avatar {
+                font-size: 16px !important;
+            }
+            
+            .chat-pet-info strong {
+                font-size: 11px !important;
+            }
+            
+            .chat-pet-info small {
+                font-size: 8px !important;
+            }
+            
+            .chat-minimize {
+                width: 22px !important;
+                height: 22px !important;
+                font-size: 14px !important;
+            }
+            
+            .chat-messages {
+                height: 180px !important;
+                padding: 6px !important;
+                gap: 6px !important;
+            }
+            
+            .chat-message-text {
+                font-size: 10px !important;
+            }
+            
+            .chat-message-time {
+                font-size: 7px !important;
+            }
+            
+            .chat-input-area {
+                padding: 6px !important;
+            }
+            
+            .chat-input-area textarea {
+                padding: 4px 8px !important;
+                font-size: 10px !important;
+            }
+            
+            .chat-send-btn {
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 12px !important;
+            }
+            
+            .chat-button {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 18px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            
+            .empty-state {
+                padding: 20px 12px !important;
+                font-size: 11px !important;
+            }
+            
+            .empty-state::before {
+                font-size: 28px !important;
+            }
+            
+            .error-message {
+                font-size: 9px !important;
+                padding-left: 8px !important;
+            }
+            
+            .star {
+                font-size: 18px !important;
+            }
+            
+            .review-buttons .btn, .review-buttons .btn-small, .review-buttons .btn-submit {
+                padding: 5px 8px !important;
+                font-size: 10px !important;
+            }
         }
-        
-        .btn-submit:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
+
+        @media (max-width: 896px) and (orientation: landscape) {
+            .chat-container {
+                width: 320px !important;
+                left: auto;
+                right: 15px;
+            }
+            
+            .modal-content {
+                max-height: 85vh;
+            }
+            
+            .calendar-day {
+                min-height: 60px;
+            }
         }
     </style>
 </head>
@@ -717,7 +1746,7 @@
         <div class="profile-card">
             <div class="profile-header">
                 <h3>Личный кабинет</h3>
-                <button class="logout-btn test-b-logout" onclick="logout()">Выйти</button>
+                <button class="logout-btn test-b-logout" onclick="window.logout()">Выйти</button>
             </div>
             <div class="profile-body">
                 <div class="profile-info">
@@ -731,12 +1760,12 @@
                         <div class="user-name" id="userFullName">Загрузка...</div>
                         <div class="pet-name-display">
                             <span id="petNameDisplay">🐾 Кличка питомца</span>
-                            <button class="edit-pet-name" onclick="editPetName()">✏️</button>
+                            <button class="edit-pet-name" onclick="window.editPetName()">✏️</button>
                         </div>
                         <div class="contact-info">
                             <div class="contact-item-small">
                                 <img src="img/telefon.png" alt="Телефон">
-                                <input type="tel" id="userPhone" placeholder="+7 999 999-99-99" onchange="saveUserPhone()">
+                                <input type="tel" id="userPhone" placeholder="+7 999 999-99-99" onchange="window.saveUserPhone()">
                             </div>
                             <div class="contact-item-small">
                                 <img src="img/pochta.png" alt="Email">
@@ -752,78 +1781,58 @@
             <div class="calendar-header">
                 <h4>Календарь занятости</h4>
                 <div class="calendar-nav">
-                    <button onclick="prevMonth()">←</button>
+                    <button onclick="window.prevMonth()">←</button>
                     <span class="current-month" id="currentMonth"></span>
-                    <button onclick="nextMonth()">→</button>
+                    <button onclick="window.nextMonth()">→</button>
                 </div>
             </div>
             <div class="calendar-legend">
-                <div class="legend-item">
-                    <div class="legend-color red"></div>
-                    <span>Занято</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color green"></div>
-                    <span>Свободно</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color default"></div>
-                    <span>Статус не указан</span>
-                </div>
-                <div class="legend-item">
-                    <span>✨ Нажмите на свободную дату, чтобы выбрать</span>
-                </div>
+                <div class="legend-item"><div class="legend-color red"></div><span>Занято</span></div>
+                <div class="legend-item"><div class="legend-color green"></div><span>Свободно</span></div>
+                <div class="legend-item"><div class="legend-color default"></div><span>Статус не указан</span></div>
+                <div class="legend-item"><span>✨ Нажмите на свободную дату, чтобы выбрать</span></div>
             </div>
             <div class="calendar-grid">
                 <div class="weekdays">
-                    <div class="weekday">Пн</div>
-                    <div class="weekday">Вт</div>
-                    <div class="weekday">Ср</div>
-                    <div class="weekday">Чт</div>
-                    <div class="weekday">Пт</div>
-                    <div class="weekday">Сб</div>
-                    <div class="weekday">Вс</div>
+                    <div class="weekday">Пн</div><div class="weekday">Вт</div><div class="weekday">Ср</div>
+                    <div class="weekday">Чт</div><div class="weekday">Пт</div><div class="weekday">Сб</div><div class="weekday">Вс</div>
                 </div>
                 <div class="calendar-days" id="calendarDays"></div>
             </div>
         </div>
 
         <div class="form-card">
-            <div class="form-header">
-                <h4>Новая заявка</h4>
-            </div>
+            <div class="form-header"><h4>Новая заявка</h4></div>
             <div class="form-body">
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Кличка питомца *</label>
+                        <label>Кличка питомца</label>
                         <input type="text" class="test-i-name" id="petName" placeholder="Введите кличку">
                         <div id="petNameError" class="error-message"></div>
                     </div>
                     <div class="form-group">
-                        <label>Услуга *</label>
+                        <label>Услуга</label>
                         <select id="serviceSelect">
                             <option value="">Выберите услугу</option>
-                            <option value="Гигиена">🛁 Гигиена</option>
-                            <option value="Тримминг">✂️ Тримминг</option>
-                            <option value="Стрижка">🐕 Стрижка</option>
-                            <option value="Экспресс-линька">🍃 Экспресс-линька</option>
+                            <option value="Гигиена">Гигиена</option>
+                            <option value="Тримминг">Тримминг</option>
+                            <option value="Стрижка">Стрижка</option>
+                            <option value="Экспресс-линька">Экспресс-линька</option>
                         </select>
                         <div id="serviceError" class="error-message"></div>
                     </div>
                     <div class="form-group">
-                        <label>Желаемая дата *</label>
-                        <input type="date" id="appointmentDate" onchange="checkDateAvailability()">
+                        <label>Желаемая дата</label>
+                        <input type="date" id="appointmentDate" onchange="window.checkDateAvailability()">
                         <div id="dateWarning" class="date-warning"></div>
                         <div id="dateError" class="error-message"></div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>📸 Фото питомца *</label>
+                        <label>📸 Фото питомца</label>
                         <input type="file" id="petPhoto" class="test-c-photo" accept="image/png,image/jpeg,image/jpg,image/bmp">
-                        <div class="photo-preview" id="photoPreview" style="display: none;">
-                            <img id="previewImg" src="">
-                        </div>
+                        <div class="photo-preview" id="photoPreview" style="display: none;"><img id="previewImg" src=""></div>
                         <div id="photoError" class="error-message"></div>
                     </div>
                     <div class="form-group">
@@ -831,20 +1840,18 @@
                         <textarea id="additionalMessage" placeholder="Особенности питомца, пожелания по стрижке..."></textarea>
                     </div>
                 </div>
-                <button class="btn-submit test-b-new" onclick="handleCreateApplication()">Создать заявку</button>
+                <button class="btn-submit test-b-new" onclick="window.handleCreateApplication()">Создать заявку</button>
             </div>
         </div>
 
         <div class="applications-card">
-            <div class="applications-header">
-                <h4>Мои заявки</h4>
-            </div>
+            <div class="applications-header"><h4>Мои заявки</h4></div>
             <div class="form-body" style="padding: 20px 30px 0 30px;">
                 <div class="filters-section">
-                    <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">Все</button>
-                    <button class="filter-btn" data-filter="Новая" onclick="setFilter('Новая')">Новые</button>
-                    <button class="filter-btn" data-filter="Обработка данных" onclick="setFilter('Обработка данных')">Обработка данных</button>
-                    <button class="filter-btn" data-filter="Услуга оказана" onclick="setFilter('Услуга оказана')">Завершённые</button>
+                    <button class="filter-btn active" data-filter="all" onclick="window.setFilter('all')">Все</button>
+                    <button class="filter-btn" data-filter="Новая" onclick="window.setFilter('Новая')">Новые</button>
+                    <button class="filter-btn" data-filter="Обработка данных" onclick="window.setFilter('Обработка данных')">Обработка данных</button>
+                    <button class="filter-btn" data-filter="Услуга оказана" onclick="window.setFilter('Услуга оказана')">Завершённые</button>
                 </div>
             </div>
             <div class="applications-list" id="applications-list"></div>
@@ -853,30 +1860,20 @@
 
     <div id="photoModal" class="modal photo-modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="photoModalTitle">Фото</h3>
-                <button class="modal-close" onclick="closeModal('photoModal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <img id="modalPhotoImg" class="full-photo" src="" alt="Фото">
-                <p id="modalPhotoCaption" style="text-align: center; color: #666;"></p>
-            </div>
+            <div class="modal-header"><h3 id="photoModalTitle">Фото</h3><button class="modal-close" onclick="window.closeModal('photoModal')">&times;</button></div>
+            <div class="modal-body"><img id="modalPhotoImg" class="full-photo" src=""><p id="modalPhotoCaption" style="text-align: center; color: #666;"></p></div>
         </div>
     </div>
 
     <div id="appDetailsModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>Детали заявки</h3>
-                <button class="modal-close" onclick="closeModal('appDetailsModal')">&times;</button>
-            </div>
-            <div class="modal-body" id="appDetailsBody">
-            </div>
+            <div class="modal-header"><h3>Детали заявки</h3><button class="modal-close" onclick="window.closeModal('appDetailsModal')">&times;</button></div>
+            <div class="modal-body" id="appDetailsBody"></div>
         </div>
     </div>
-    <button class="chat-button" id="globalChatBtn" onclick="openGlobalChat()" style="display: none;">
-        💬
-        <span id="unreadBadge" class="unread-badge" style="display: none;">0</span>
+    
+    <button class="chat-button" id="globalChatBtn" onclick="window.openGlobalChat()" style="display: none;">
+        💬<span id="unreadBadge" class="unread-badge" style="display: none;">0</span>
     </button>
 
     <script src="js/auth.js"></script>
@@ -887,213 +1884,457 @@
     <script src="js/toast.js"></script>
     <script src="js/modal.js"></script>
     <script>
+        let currentUser = null;
+        const CALENDAR_KEY = 'groomroom_calendar_status';
+        let currentYear = new Date().getFullYear();
+        let currentMonth = new Date().getMonth();
+        let selectedDate = null;
+        let currentFilter = 'all';
+        let currentChatAppId = null;
+        let selectedRating = 0;
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function getStatusClass(status) {
+            switch(status) {
+                case 'Новая': return 'status-new';
+                case 'Обработка данных': return 'status-processing';
+                case 'Услуга оказана': return 'status-completed';
+                default: return '';
+            }
+        }
+        
+        function getCalendarStatus() {
+            const saved = localStorage.getItem(CALENDAR_KEY);
+            return saved ? JSON.parse(saved) : {};
+        }
+        
+        function isDateBusy(dateStr) {
+            const statuses = getCalendarStatus();
+            return statuses[dateStr] === 'red';
+        }
+        
+        function isDateFree(dateStr) {
+            const statuses = getCalendarStatus();
+            return statuses[dateStr] === 'green';
+        }
+        
+        window.prevMonth = function() {
+            if (currentMonth === 0) { currentMonth = 11; currentYear--; } 
+            else { currentMonth--; }
+            selectedDate = null;
+            renderCalendar();
+        };
+        
+        window.nextMonth = function() {
+            if (currentMonth === 11) { currentMonth = 0; currentYear++; } 
+            else { currentMonth++; }
+            selectedDate = null;
+            renderCalendar();
+        };
+        
+        window.checkDateAvailability = function() {
+            const date = document.getElementById('appointmentDate').value;
+            const warningDiv = document.getElementById('dateWarning');
+            if (!date) { warningDiv.innerHTML = ''; return; }
+            if (isDateBusy(date)) {
+                warningDiv.innerHTML = 'Эта дата занята! Выберите другую дату.';
+                warningDiv.className = 'date-warning warning';
+            } else if (isDateFree(date)) {
+                warningDiv.innerHTML = 'Эта дата свободна!';
+                warningDiv.className = 'date-warning success';
+            } else {
+                warningDiv.innerHTML = 'Статус даты не указан. Вы можете записаться.';
+                warningDiv.className = 'date-warning';
+            }
+        };
+        
+        function selectCalendarDate(dateStr, day) {
+            selectedDate = dateStr;
+            document.getElementById('appointmentDate').value = dateStr;
+            window.checkDateAvailability();
+            renderCalendar();
+            showToast(`Выбрана дата: ${day}.${currentMonth+1}.${currentYear}`, 'success');
+        }
+        
+        function renderCalendar() {
+            const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+            const startWeekday = firstDayOfMonth.getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            let startOffset = startWeekday === 0 ? 6 : startWeekday - 1;
+            const calendarDays = document.getElementById('calendarDays');
+            const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+            document.getElementById('currentMonth').innerHTML = `${monthNames[currentMonth]} ${currentYear}`;
+            calendarDays.innerHTML = '';
+            
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            for (let i = 0; i < startOffset; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarDays.appendChild(emptyDay);
+            }
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const isBusy = isDateBusy(dateStr);
+                const isFree = isDateFree(dateStr);
+                
+                const currentDate = new Date(currentYear, currentMonth, day);
+                const isPastDate = currentDate < today;
+                
+                const dayElement = document.createElement('div');
+                if (isBusy || isPastDate) dayElement.className = 'calendar-day busy';
+                else if (isFree) dayElement.className = 'calendar-day free';
+                else dayElement.className = 'calendar-day default';
+                
+                if (!isBusy && !isPastDate) dayElement.onclick = () => selectCalendarDate(dateStr, day);
+                else if (isPastDate) dayElement.onclick = () => showToast('Нельзя выбрать прошедшую дату', 'error');
+                else dayElement.onclick = () => showToast('Эта дата занята, выберите другую', 'error');
+                
+                if (selectedDate === dateStr) dayElement.classList.add('selected');
+                const dayNumber = document.createElement('div');
+                dayNumber.className = 'day-number';
+                dayNumber.textContent = day;
+                const statusIcon = document.createElement('div');
+                statusIcon.className = 'day-status-icon';
+                if (isBusy) statusIcon.textContent = '🔴';
+                else if (isFree) statusIcon.textContent = '🟢';
+                else if (isPastDate) statusIcon.textContent = '⛔';
+                else statusIcon.textContent = '❓';
+                dayElement.appendChild(dayNumber);
+                dayElement.appendChild(statusIcon);
+                calendarDays.appendChild(dayElement);
+            }
+        }
+        
+        window.editPetName = function() {
+            const currentName = document.getElementById('petName').value || '';
+            const newName = prompt('Введите кличку питомца:', currentName);
+            if (newName && newName.trim()) {
+                const trimmedName = newName.trim();
+                document.getElementById('petNameDisplay').innerHTML = `🐾 ${escapeHtml(trimmedName)}`;
+                document.getElementById('petName').value = trimmedName;
+                localStorage.setItem(`pet_name_${currentUser.id}`, trimmedName);
+                showToast('Кличка сохранена!', 'success');
+            }
+        };
+        
+        window.saveUserPhone = function() {
+            const phone = document.getElementById('userPhone').value;
+            if (phone && phone.trim()) {
+                localStorage.setItem(`user_phone_${currentUser.id}`, phone.trim());
+                showToast('Телефон сохранен!', 'success');
+            }
+        };
+        
+        function loadUserData() {
+            document.getElementById('userFullName').textContent = currentUser.fio || 'Пользователь';
+            document.getElementById('userEmail').textContent = currentUser.email || 'email@example.com';
+            const savedPetPhoto = localStorage.getItem(`pet_avatar_${currentUser.id}`);
+            if (savedPetPhoto && savedPetPhoto !== 'null') document.getElementById('petAvatarImg').src = savedPetPhoto;
+            const savedPetName = localStorage.getItem(`pet_name_${currentUser.id}`);
+            if (savedPetName && savedPetName !== 'null') {
+                document.getElementById('petNameDisplay').innerHTML = `🐾 ${savedPetName}`;
+                document.getElementById('petName').value = savedPetName;
+            }
+            const savedPhone = localStorage.getItem(`user_phone_${currentUser.id}`);
+            if (savedPhone && savedPhone !== 'null') document.getElementById('userPhone').value = savedPhone;
+        }
+        
+        function formatDateFull(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+        }
+        
+        window.showPhoto = function(photoSrc, title) {
+            document.getElementById('photoModalTitle').textContent = title;
+            document.getElementById('modalPhotoImg').src = photoSrc;
+            document.getElementById('modalPhotoCaption').textContent = title;
+            window.openModal('photoModal');
+        };
+        
+        function hasReview(applicationId) {
+            const reviews = JSON.parse(localStorage.getItem(REVIEWS_KEY) || '[]');
+            return reviews.some(r => r.applicationId === applicationId);
+        }
+        
+        window.showAppDetails = function(appId) {
+            const applications = getUserApplications(currentUser.id);
+            const app = applications.find(a => a.id === appId);
+            if (!app) return;
+            const modalBody = document.getElementById('appDetailsBody');
+            modalBody.innerHTML = `
+                <div style="margin-bottom: 20px;">
+                    <strong>Кличка:</strong> ${escapeHtml(app.petName)}<br>
+                    <strong>Услуга:</strong> ${escapeHtml(app.service || 'Не указана')}<br>
+                    <strong>Дата:</strong> ${formatDateFull(app.appointmentDate || app.createdAt)}<br>
+                    <strong>Статус:</strong> <span class="status-badge ${getStatusClass(app.status)}" style="display: inline-block; margin-top: 5px;">${app.status}</span><br>
+                    ${app.additionalMessage ? `<strong>💬 Сообщение:</strong><br><p style="background:#f5f5f5; padding: 10px; border-radius: 16px; margin-top: 5px;">${escapeHtml(app.additionalMessage)}</p>` : ''}
+                    ${app.resultPhoto ? `<strong>📸 Фото результата:</strong><br><img src="${app.resultPhoto}" style="max-width: 100%; border-radius: 16px; margin-top: 10px; cursor: pointer;" onclick="window.showPhoto('${app.resultPhoto}', 'Фото результата - ${escapeHtml(app.petName)}')">` : ''}
+                </div>
+            `;
+            if (app.status === 'Услуга оказана' && !hasReview(app.id)) {
+                const reviewBtn = document.createElement('div');
+                reviewBtn.className = 'review-buttons';
+                reviewBtn.style.marginTop = '20px';
+                reviewBtn.innerHTML = `<button class="btn-small" onclick="window.showReviewForm(${app.id}, '${escapeHtml(app.petName)}')">Оставить отзыв</button>`;
+                modalBody.appendChild(reviewBtn);
+            }
+            window.openModal('appDetailsModal');
+        };
+        
+        window.showReviewForm = function(applicationId, petName) {
+            const modalBody = document.getElementById('appDetailsBody');
+            selectedRating = 0;
+            modalBody.innerHTML = `
+                <div class="review-form">
+                    <h4>Оцените услугу для ${escapeHtml(petName)}</h4>
+                    <div class="rating-input">
+                        <span>Ваша оценка:</span>
+                        <div class="stars-input" id="starsInput">
+                            ${[1,2,3,4,5].map(s => `<span class="star" data-rating="${s}" onclick="window.selectRating(${s})">☆</span>`).join('')}
+                        </div>
+                    </div>
+                    <textarea id="reviewText" placeholder="Расскажите о впечатлениях..." rows="4"></textarea>
+                    <input type="file" id="reviewPhoto" accept="image/*">
+                    <div class="review-buttons">
+                        <button class="btn-submit" style="width: auto; padding: 10px 20px;" onclick="window.submitReview(${applicationId})">Отправить отзыв</button>
+                        <button class="btn-small" onclick="window.closeModal('appDetailsModal')">Отмена</button>
+                    </div>
+                </div>
+            `;
+            window.openModal('appDetailsModal');
+        };
+        
+        window.selectRating = function(rating) {
+            selectedRating = rating;
+            document.querySelectorAll('.star').forEach((star, i) => {
+                star.textContent = i < rating ? '★' : '☆';
+            });
+        };
+        
+        window.submitReview = async function(applicationId) {
+            if (selectedRating === 0) { showToast('Выберите оценку', 'error'); return; }
+            const text = document.getElementById('reviewText').value;
+            if (!text.trim()) { showToast('Напишите отзыв', 'error'); return; }
+            let photo = null;
+            const photoFile = document.getElementById('reviewPhoto').files[0];
+            if (photoFile) {
+                photo = await new Promise(resolve => {
+                    const reader = new FileReader();
+                    reader.onload = e => resolve(e.target.result);
+                    reader.readAsDataURL(photoFile);
+                });
+            }
+            addReview(applicationId, currentUser.id, selectedRating, text, photo);
+            window.closeModal('appDetailsModal');
+            loadApplications();
+        };
+        
+        window.setFilter = function(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === filter) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            loadApplications();
+        };
+        
+        function loadApplications() {
+            let applications = getUserApplications(currentUser.id);
+            if (currentFilter !== 'all') applications = applications.filter(app => app.status === currentFilter);
+            const container = document.getElementById('applications-list');
+            if (applications.length === 0) {
+                container.innerHTML = '<div class="empty-state">🐾 У вас пока нет заявок<br>Создайте первую!</div>';
+                return;
+            }
+            container.innerHTML = applications.map(app => `
+                <div class="application-card" data-id="${app.id}" onclick="window.showAppDetails(${app.id})">
+                    <div class="app-info">
+                        <div class="app-pet-name">
+                            ${app.petPhoto ? `<img src="${app.petPhoto}" class="app-pet-photo-mini" alt="Фото">` : '<div class="app-pet-photo-mini" style="background:#e0e0e0; display:flex; align-items:center; justify-content:center;">🐕</div>'}
+                            ${escapeHtml(app.petName)}
+                        </div>
+                        <div class="app-service">${escapeHtml(app.service || 'Услуга не указана')}</div>
+                        <div class="app-date">📅 ${formatDateFull(app.appointmentDate || app.createdAt)}</div>
+                        ${app.additionalMessage ? `<div class="app-message">💬 ${escapeHtml(app.additionalMessage.substring(0, 60))}${app.additionalMessage.length > 60 ? '...' : ''}</div>` : ''}
+                    </div>
+                    <span class="status-badge ${getStatusClass(app.status)} test-t-status">${app.status}</span>
+                    <div class="app-actions" onclick="event.stopPropagation()">
+                        ${app.status === 'Новая' ? 
+                            `<button class="action-btn delete test-b-remove" onclick="window.handleDeleteApplication(${app.id})" title="Отменить запись">🗑️</button>` : 
+                            `<button class="action-btn delete disabled" disabled style="opacity:0.3;">🔒</button>`
+                        }
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        window.handleDeleteApplication = function(appId) {
+            if (confirm('Вы уверены, что хотите отменить запись?')) {
+                const result = deleteApplication(appId, currentUser.id);
+                if (result.success) { showToast('Заявка удалена', 'success'); loadApplications(); } 
+                else { showToast('❌ ' + result.error, 'error'); }
+            }
+        };
+        
+        window.handleCreateApplication = function() {
+            console.log('handleCreateApplication вызвана');
+            
+            const petName = document.getElementById('petName').value;
+            const service = document.getElementById('serviceSelect').value;
+            const appointmentDate = document.getElementById('appointmentDate').value;
+            const additionalMessage = document.getElementById('additionalMessage').value;
+            const photoFile = document.getElementById('petPhoto').files[0];
+            
+            document.getElementById('petNameError').innerHTML = '';
+            document.getElementById('serviceError').innerHTML = '';
+            document.getElementById('dateError').innerHTML = '';
+            document.getElementById('photoError').innerHTML = '';
+            
+            let hasError = false;
+            
+            if (!petName || petName.trim() === '') {
+                document.getElementById('petNameError').innerHTML = 'Введите кличку питомца';
+                hasError = true;
+            }
+            if (!service) {
+                document.getElementById('serviceError').innerHTML = 'Выберите услугу';
+                hasError = true;
+            }
+            if (!appointmentDate) {
+                document.getElementById('dateError').innerHTML = 'Выберите дату';
+                hasError = true;
+            } else {
+                const selectedDateObj = new Date(appointmentDate);
+                const todayDate = new Date();
+                todayDate.setHours(0, 0, 0, 0);
+                if (selectedDateObj < todayDate) {
+                    document.getElementById('dateError').innerHTML = 'Дата не может быть в прошлом';
+                    hasError = true;
+                }
+                if (isDateBusy(appointmentDate)) {
+                    document.getElementById('dateError').innerHTML = 'Эта дата занята! Выберите другую';
+                    hasError = true;
+                }
+            }
+            if (!photoFile) {
+                document.getElementById('photoError').innerHTML = 'Загрузите фото питомца';
+                hasError = true;
+            } else {
+                const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/bmp'];
+                if (!allowedTypes.includes(photoFile.type)) {
+                    document.getElementById('photoError').innerHTML = 'Формат: PNG, JPEG, BMP';
+                    hasError = true;
+                } else if (photoFile.size > 2 * 1024 * 1024) {
+                    document.getElementById('photoError').innerHTML = 'Фото не более 2 МБ';
+                    hasError = true;
+                }
+            }
+            
+            if (hasError) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const photoBase64 = e.target.result;
+                console.log('Фото загружено, создаём заявку...');
+                
+                const result = window.createApplicationFull(
+                    petName.trim(), 
+                    photoBase64, 
+                    currentUser.id, 
+                    service, 
+                    appointmentDate, 
+                    additionalMessage || ''
+                );
+
+                console.log('Результат создания заявки:', result);
+                console.log('Все заявки после создания:', JSON.parse(localStorage.getItem('groomroom_applications') || '[]'));
+                
+                if (result.success) {
+                    showToast('Заявка успешно создана!', 'success');
+                    document.getElementById('petPhoto').value = '';
+                    document.getElementById('photoPreview').style.display = 'none';
+                    document.getElementById('appointmentDate').value = '';
+                    document.getElementById('additionalMessage').value = '';
+                    document.getElementById('serviceSelect').value = '';
+                    document.getElementById('petName').value = '';
+                    selectedDate = null;
+                    renderCalendar();
+                    loadApplications();
+                } else {
+                    if (result.errors) {
+                        if (result.errors.name) document.getElementById('petNameError').innerHTML = result.errors.name;
+                        if (result.errors.photo) document.getElementById('photoError').innerHTML = result.errors.photo;
+                    }
+                    showToast('Ошибка при создании заявки', 'error');
+                }
+            };
+            reader.onerror = function() {
+                showToast('Ошибка при загрузке фото', 'error');
+            };
+            reader.readAsDataURL(photoFile);
+        };
+        
+        window.openGlobalChat = function() {
+            const apps = getUserApplications(currentUser.id);
+            const activeApp = apps.find(a => a.status !== 'Услуга оказана');
+            if (activeApp) openChatForApplication(activeApp.id, activeApp.petName);
+            else if (apps.length > 0) openChatForApplication(apps[0].id, apps[0].petName);
+            else showToast('У вас нет активных заявок для чата', 'info');
+        };
+        
+            function openChatForApplication(appId, petName) {
+                const existingChat = document.getElementById(`chat-container-${appId}`);
+                if (existingChat) { existingChat.remove(); return; }
+                document.querySelectorAll('.chat-container').forEach(el => el.remove());
+                const chatHtml = renderChatModal(appId, petName, currentUser.id, currentUser.fio.split(' ')[0], false);
+                document.body.insertAdjacentHTML('beforeend', chatHtml);
+                currentChatAppId = appId;
+                markMessagesAsRead(appId, currentUser.id);
+                updateUnreadCount();
+            }
+        
+        function updateUnreadCount() {
+            const count = getUnreadCount(currentUser.id);
+            const badge = document.getElementById('unreadBadge');
+            const btn = document.getElementById('globalChatBtn');
+            if (count > 0) {
+                badge.textContent = count > 9 ? '9+' : count;
+                badge.style.display = 'inline-block';
+                btn.style.display = 'flex';
+                btn.style.animation = 'pulse 0.5s ease';
+                setTimeout(() => { btn.style.animation = ''; }, 500);
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+        
         (async () => {
             await initData();
-            const CALENDAR_KEY = 'groomroom_calendar_status';
-            let currentYear = new Date().getFullYear();
-            let currentMonth = new Date().getMonth();
-            let selectedDate = null;
-            let currentFilter = 'all';
+            currentUser = getCurrentUser();
+            console.log('Текущий пользователь:', currentUser);
             
-            const user = getCurrentUser();
-            if (!user) {
-                window.location.href = 'index.html';
-                return;
-            }
-            if (user.role === 'admin') {
-                window.location.href = 'admin.html';
-                return;
-            }
-            function getCalendarStatus() {
-                const saved = localStorage.getItem(CALENDAR_KEY);
-                return saved ? JSON.parse(saved) : {};
-            }
-            
-            function isDateBusy(dateStr) {
-                const statuses = getCalendarStatus();
-                return statuses[dateStr] === 'red';
-            }
-            
-            function isDateFree(dateStr) {
-                const statuses = getCalendarStatus();
-                return statuses[dateStr] === 'green';
-            }
-            
-            function renderCalendar() {
-                const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
-                const startWeekday = firstDayOfMonth.getDay();
-                const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-                const statuses = getCalendarStatus();
-                
-                let startOffset = startWeekday === 0 ? 6 : startWeekday - 1;
-                
-                const calendarDays = document.getElementById('calendarDays');
-                const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-                document.getElementById('currentMonth').innerHTML = `${monthNames[currentMonth]} ${currentYear}`;
-                
-                calendarDays.innerHTML = '';
-                
-                for (let i = 0; i < startOffset; i++) {
-                    const emptyDay = document.createElement('div');
-                    emptyDay.className = 'calendar-day empty';
-                    calendarDays.appendChild(emptyDay);
-                }
-                
-                for (let day = 1; day <= daysInMonth; day++) {
-                    const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                    const isBusy = isDateBusy(dateStr);
-                    const isFree = isDateFree(dateStr);
-                    
-                    const dayElement = document.createElement('div');
-                    
-                    if (isBusy) {
-                        dayElement.className = 'calendar-day busy';
-                    } else if (isFree) {
-                        dayElement.className = 'calendar-day free';
-                    } else {
-                        dayElement.className = 'calendar-day default';
-                    }
-                    
-                    if (!isBusy) {
-                        dayElement.onclick = () => selectCalendarDate(dateStr, day);
-                    } else {
-                        dayElement.onclick = () => showToast('Эта дата занята, выберите другую', 'error');
-                    }
-                    
-                    if (selectedDate === dateStr) {
-                        dayElement.classList.add('selected');
-                    }
-                    
-                    const dayNumber = document.createElement('div');
-                    dayNumber.className = 'day-number';
-                    dayNumber.textContent = day;
-                    
-                    const statusIcon = document.createElement('div');
-                    statusIcon.className = 'day-status-icon';
-                    if (isBusy) {
-                        statusIcon.textContent = '🔴';
-                    } else if (isFree) {
-                        statusIcon.textContent = '🟢';
-                    } else {
-                        statusIcon.textContent = '❓';
-                    }
-                    
-                    dayElement.appendChild(dayNumber);
-                    dayElement.appendChild(statusIcon);
-                    calendarDays.appendChild(dayElement);
-                }
-            }
-            
-            function selectCalendarDate(dateStr, day) {
-                selectedDate = dateStr;
-                document.getElementById('appointmentDate').value = dateStr;
-                checkDateAvailability();
-                renderCalendar();
-                showToast(`Выбрана дата: ${day}.${currentMonth+1}.${currentYear}`, 'success');
-            }
-            
-            function prevMonth() {
-                if (currentMonth === 0) {
-                    currentMonth = 11;
-                    currentYear--;
-                } else {
-                    currentMonth--;
-                }
-                selectedDate = null;
-                renderCalendar();
-            }
-            
-            function nextMonth() {
-                if (currentMonth === 11) {
-                    currentMonth = 0;
-                    currentYear++;
-                } else {
-                    currentMonth++;
-                }
-                selectedDate = null;
-                renderCalendar();
-            }
-            
-            function checkDateAvailability() {
-                const date = document.getElementById('appointmentDate').value;
-                const warningDiv = document.getElementById('dateWarning');
-                
-                if (!date) {
-                    warningDiv.innerHTML = '';
-                    return;
-                }
-                
-                if (isDateBusy(date)) {
-                    warningDiv.innerHTML = 'Эта дата занята! Выберите другую дату.';
-                    warningDiv.className = 'date-warning warning';
-                } else if (isDateFree(date)) {
-                    warningDiv.innerHTML = 'Эта дата свободна!';
-                    warningDiv.className = 'date-warning success';
-                } else {
-                    warningDiv.innerHTML = 'Статус даты не указан. Вы можете записаться.';
-                    warningDiv.className = 'date-warning';
-                }
-            }
-            
-            function loadUserData() {
-                document.getElementById('userFullName').textContent = user.fio || 'Пользователь';
-                document.getElementById('userEmail').textContent = user.email || 'email@example.com';
-                
-                const savedPetPhoto = localStorage.getItem(`pet_avatar_${user.id}`);
-                if (savedPetPhoto && savedPetPhoto !== 'null') {
-                    document.getElementById('petAvatarImg').src = savedPetPhoto;
-                }
-                
-                const savedPetName = localStorage.getItem(`pet_name_${user.id}`);
-                if (savedPetName && savedPetName !== 'null') {
-                    document.getElementById('petNameDisplay').innerHTML = `🐾 ${savedPetName}`;
-                    document.getElementById('petName').value = savedPetName;
-                }
-                
-                const savedPhone = localStorage.getItem(`user_phone_${user.id}`);
-                if (savedPhone && savedPhone !== 'null') {
-                    document.getElementById('userPhone').value = savedPhone;
-                }
-            }
-            
-            function editPetName() {
-                const currentName = document.getElementById('petName').value || '';
-                const newName = prompt('Введите кличку питомца:', currentName);
-                if (newName && newName.trim()) {
-                    const trimmedName = newName.trim();
-                    document.getElementById('petNameDisplay').innerHTML = `🐾 ${trimmedName}`;
-                    document.getElementById('petName').value = trimmedName;
-                    localStorage.setItem(`pet_name_${user.id}`, trimmedName);
-                    showToast('Кличка сохранена!', 'success');
-                }
-            }
-            
-            function saveUserPhone() {
-                const phone = document.getElementById('userPhone').value;
-                if (phone && phone.trim()) {
-                    localStorage.setItem(`user_phone_${user.id}`, phone.trim());
-                    showToast('Телефон сохранен!', 'success');
-                }
-            }
+            if (!currentUser) { window.location.href = 'index.html'; return; }
+            if (currentUser.role === 'admin') { window.location.href = 'admin.html'; return; }
             
             document.getElementById('avatarInput').addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 if (!file) return;
-                
                 if (!file.type.match('image/png') && !file.type.match('image/jpeg') && !file.type.match('image/jpg') && !file.type.match('image/bmp')) {
-                    showToast('Формат: PNG, JPEG, BMP', 'error');
-                    return;
+                    showToast('Формат: PNG, JPEG, BMP', 'error'); return;
                 }
-                
-                if (file.size > 2 * 1024 * 1024) {
-                    showToast('Фото не более 2 МБ', 'error');
-                    return;
-                }
-                
+                if (file.size > 2 * 1024 * 1024) { showToast('Фото не более 2 МБ', 'error'); return; }
                 const reader = new FileReader();
                 reader.onload = function(ev) {
                     document.getElementById('petAvatarImg').src = ev.target.result;
-                    localStorage.setItem(`pet_avatar_${user.id}`, ev.target.result);
+                    localStorage.setItem(`pet_avatar_${currentUser.id}`, ev.target.result);
                     showToast('Фото питомца обновлено!', 'success');
                 };
                 reader.readAsDataURL(file);
@@ -1103,7 +2344,6 @@
                 const file = e.target.files[0];
                 const preview = document.getElementById('photoPreview');
                 const previewImg = document.getElementById('previewImg');
-                
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function(ev) {
@@ -1117,319 +2357,27 @@
                 }
             });
             
-            function setFilter(filter) {
-                currentFilter = filter;
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    if (btn.dataset.filter === filter) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                });
-                loadApplications();
-            }
-            
-            function loadApplications() {
-                let applications = getUserApplications(user.id);
-                
-                if (currentFilter !== 'all') {
-                    applications = applications.filter(app => app.status === currentFilter);
-                }
-                
-                const container = document.getElementById('applications-list');
-                
-                if (applications.length === 0) {
-                    container.innerHTML = '<div class="empty-state">🐾 У вас пока нет заявок<br>Создайте первую!</div>';
-                    return;
-                }
-                
-                container.innerHTML = applications.map(app => `
-                    <div class="application-card" data-id="${app.id}" onclick="showAppDetails(${app.id})">
-                        <div class="app-info">
-                            <div class="app-pet-name">
-                                ${app.petPhoto ? `<img src="${app.petPhoto}" class="app-pet-photo-mini" alt="Фото">` : '<div class="app-pet-photo-mini" style="background:#e0e0e0; display:flex; align-items:center; justify-content:center;">🐕</div>'}
-                                ${escapeHtml(app.petName)}
-                            </div>
-                            <div class="app-service">${escapeHtml(app.service || 'Услуга не указана')}</div>
-                            <div class="app-date">📅 ${formatDateFull(app.appointmentDate || app.createdAt)}</div>
-                            ${app.additionalMessage ? `<div class="app-message">💬 ${escapeHtml(app.additionalMessage.substring(0, 60))}${app.additionalMessage.length > 60 ? '...' : ''}</div>` : ''}
-                        </div>
-                        <span class="status-badge ${getStatusClass(app.status)} test-t-status">${app.status}</span>
-                        <div class="app-actions" onclick="event.stopPropagation()">
-                            ${app.resultPhoto ? `<button class="action-btn view" onclick="showPhoto('${app.resultPhoto}', 'Фото результата - ${escapeHtml(app.petName)}')">📷</button>` : ''}
-                            ${app.petPhoto ? `<button class="action-btn view" onclick="showPhoto('${app.petPhoto}', 'Фото питомца - ${escapeHtml(app.petName)}')">🐶</button>` : ''}
-                            ${app.status === 'Новая' ? 
-                                `<button class="action-btn delete test-b-remove" onclick="handleDeleteApplication(${app.id})" title="Отменить запись">🗑️</button>` : 
-                                `<button class="action-btn delete disabled" disabled style="opacity:0.3;">🔒</button>`
-                            }
-                        </div>
-                    </div>
-                `).join('');
-            }
-            
-            function formatDateFull(dateStr) {
-                const date = new Date(dateStr);
-                return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
-            }
-            
-            function showPhoto(photoSrc, title) {
-                document.getElementById('photoModalTitle').textContent = title;
-                document.getElementById('modalPhotoImg').src = photoSrc;
-                document.getElementById('modalPhotoCaption').textContent = title;
-                openModal('photoModal');
-            }
-            
-            function showAppDetails(appId) {
-                const applications = getUserApplications(user.id);
-                const app = applications.find(a => a.id === appId);
-                if (!app) return;
-        
-                const modalBody = document.getElementById('appDetailsBody');
-                modalBody.innerHTML = `
-                    <div style="margin-bottom: 20px;">
-                        <strong>🐾 Кличка:</strong> ${escapeHtml(app.petName)}<br>
-                        <strong>✂️ Услуга:</strong> ${escapeHtml(app.service || 'Не указана')}<br>
-                        <strong>📅 Дата:</strong> ${formatDateFull(app.appointmentDate || app.createdAt)}<br>
-                        <strong>📊 Статус:</strong> <span class="status-badge ${getStatusClass(app.status)}" style="display: inline-block; margin-top: 5px;">${app.status}</span><br>
-                        ${app.additionalMessage ? `<strong>💬 Сообщение:</strong><br><p style="background:#f5f5f5; padding: 10px; border-radius: 16px; margin-top: 5px;">${escapeHtml(app.additionalMessage)}</p>` : ''}
-                        ${app.resultPhoto ? `<strong>📸 Фото результата:</strong><br><img src="${app.resultPhoto}" style="max-width: 100%; border-radius: 16px; margin-top: 10px; cursor: pointer;" onclick="showPhoto('${app.resultPhoto}', 'Фото результата - ${escapeHtml(app.petName)}')">` : ''}
-                    </div>
-                `;
-        
-                if (app.status === 'Услуга оказана' && !hasReview(app.id)) {
-                    const reviewBtn = document.createElement('div');
-                    reviewBtn.className = 'review-buttons';
-                    reviewBtn.style.marginTop = '20px';
-                    reviewBtn.innerHTML = `<button class="btn-small" onclick="showReviewForm(${app.id}, '${escapeHtml(app.petName)}')">⭐ Оставить отзыв</button>`;
-                    modalBody.appendChild(reviewBtn);
-                }
-        
-                openModal('appDetailsModal');
-            }
-
-            function hasReview(applicationId) {
-                const reviews = JSON.parse(localStorage.getItem(REVIEWS_KEY) || '[]');
-                return reviews.some(r => r.applicationId === applicationId);
-            }
-
-            function showReviewForm(applicationId, petName) {
-                const modalBody = document.getElementById('appDetailsBody');
-                modalBody.innerHTML = `
-                    <div class="review-form">
-                        <h4>Оцените услугу для ${escapeHtml(petName)}</h4>
-                        <div class="rating-input">
-                            <span>Ваша оценка:</span>
-                            <div class="stars-input" id="starsInput">
-                                ${[1,2,3,4,5].map(s => `<span class="star" data-rating="${s}" onclick="selectRating(${s})">☆</span>`).join('')}
-                            </div>
-                        </div>
-                        <textarea id="reviewText" placeholder="Расскажите о впечатлениях..." rows="4"></textarea>
-                        <input type="file" id="reviewPhoto" accept="image/*">
-                        <div class="review-buttons">
-                            <button class="btn" onclick="submitReview(${applicationId})">Отправить отзыв</button>
-                            <button class="btn-small" onclick="closeModal('appDetailsModal')">Отмена</button>
-                        </div>
-                    </div>
-                `;
-                openModal('appDetailsModal');
-            }
-
-            let selectedRating = 0;
-            function selectRating(rating) {
-                selectedRating = rating;
-                document.querySelectorAll('.star').forEach((star, i) => {
-                    star.textContent = i < rating ? '★' : '☆';
-                });
-            }
-
-            async function submitReview(applicationId) {
-                if (selectedRating === 0) {
-                    showToast('Выберите оценку', 'error');
-                    return;
-                }
-        
-                const text = document.getElementById('reviewText').value;
-                if (!text.trim()) {
-                    showToast('Напишите отзыв', 'error');
-                    return;
-                }
-        
-                let photo = null;
-                const photoFile = document.getElementById('reviewPhoto').files[0];
-                if (photoFile) {
-                    photo = await new Promise(resolve => {
-                        const reader = new FileReader();
-                        reader.onload = e => resolve(e.target.result);
-                        reader.readAsDataURL(photoFile);
-                    });
-                }
-        
-                addReview(applicationId, user.id, selectedRating, text, photo);
-                closeModal('appDetailsModal');
-                loadApplications();
-            }
-            
-            async function handleCreateApplication() {
-                const petName = document.getElementById('petName').value;
-                const service = document.getElementById('serviceSelect').value;
-                const appointmentDate = document.getElementById('appointmentDate').value;
-                const additionalMessage = document.getElementById('additionalMessage').value;
-                const photoFile = document.getElementById('petPhoto').files[0];
-                
-                document.getElementById('petNameError').innerHTML = '';
-                document.getElementById('serviceError').innerHTML = '';
-                document.getElementById('dateError').innerHTML = '';
-                document.getElementById('photoError').innerHTML = '';
-                
-                let hasError = false;
-                
-                if (!petName) {
-                    document.getElementById('petNameError').innerHTML = 'Введите кличку питомца';
-                    hasError = true;
-                }
-                
-                if (!service) {
-                    document.getElementById('serviceError').innerHTML = 'Выберите услугу';
-                    hasError = true;
-                }
-                
-                if (!appointmentDate) {
-                    document.getElementById('dateError').innerHTML = 'Выберите дату';
-                    hasError = true;
-                } else {
-                    const selectedDateObj = new Date(appointmentDate);
-                    const todayDate = new Date();
-                    todayDate.setHours(0, 0, 0, 0);
-                    if (selectedDateObj < todayDate) {
-                        document.getElementById('dateError').innerHTML = 'Дата не может быть в прошлом';
-                        hasError = true;
-                    }
-                    if (isDateBusy(appointmentDate)) {
-                        document.getElementById('dateError').innerHTML = 'Эта дата занята! Выберите другую';
-                        hasError = true;
-                    }
-                }
-                
-                if (!photoFile) {
-                    document.getElementById('photoError').innerHTML = 'Загрузите фото питомца';
-                    hasError = true;
-                } else if (!photoFile.type.match('image/png') && !photoFile.type.match('image/jpeg') && !photoFile.type.match('image/jpg') && !photoFile.type.match('image/bmp')) {
-                    document.getElementById('photoError').innerHTML = 'Формат: PNG, JPEG, BMP';
-                    hasError = true;
-                } else if (photoFile.size > 2 * 1024 * 1024) {
-                    document.getElementById('photoError').innerHTML = 'Фото не более 2 МБ';
-                    hasError = true;
-                }
-                
-                if (hasError) return;
-                
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const result = createApplicationFull(petName, e.target.result, user.id, service, appointmentDate, additionalMessage);
-                    
-                    if (result.success) {
-                        showToast('Заявка успешно создана!', 'success');
-                        document.getElementById('petPhoto').value = '';
-                        document.getElementById('photoPreview').style.display = 'none';
-                        document.getElementById('appointmentDate').value = '';
-                        document.getElementById('additionalMessage').value = '';
-                        document.getElementById('serviceSelect').value = '';
-                        selectedDate = null;
-                        renderCalendar();
-                        loadApplications();
-                    } else {
-                        if (result.errors.name) document.getElementById('petNameError').innerHTML = result.errors.name;
-                        if (result.errors.photo) document.getElementById('photoError').innerHTML = result.errors.photo;
-                    }
-                };
-                reader.readAsDataURL(photoFile);
-            }
-            
-            
-            function handleDeleteApplication(appId) {
-                if (confirm('Вы уверены, что хотите отменить запись?')) {
-                    const result = deleteApplication(appId, user.id);
-                    if (result.success) {
-                        showToast('Заявка удалена', 'success');
-                        loadApplications();
-                    } else {
-                        showToast('❌ ' + result.error, 'error');
-                    }
-                }
-            }
-            
             loadUserData();
             renderCalendar();
             loadApplications();
-            setupModalClose();
+            window.setupModalClose();
             
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
-                    closeModal('photoModal');
-                    closeModal('appDetailsModal');
-                    document.querySelectorAll('.modal.active').forEach(modal => {
-                        closeModal(modal.id);
-                    });
+                    window.closeModal('photoModal');
+                    window.closeModal('appDetailsModal');
+                    document.querySelectorAll('.modal.active').forEach(modal => window.closeModal(modal.id));
                 }
             });
-            let currentChatAppId = null;
-
-            function openGlobalChat() {
-                const apps = getUserApplications(user.id);
-                const activeApp = apps.find(a => a.status !== 'Услуга оказана');
-        
-                if (activeApp) {
-                    openChatForApplication(activeApp.id, activeApp.petName);
-                } else if (apps.length > 0) {
-                    openChatForApplication(apps[0].id, apps[0].petName);
-                } else {
-                    showToast('У вас нет активных заявок для чата', 'info');
-                }
-            }
-
-            function openChatForApplication(appId, petName) {
-                const existingChat = document.getElementById(`chat-container-${appId}`);
-                if (existingChat) {
-                    existingChat.remove();
-                    return;
-                }
-        
-                document.querySelectorAll('.chat-container').forEach(el => el.remove());
-        
-                const chatHtml = renderChatModal(appId, petName, user.id, user.fio.split(' ')[0], false);
-                document.body.insertAdjacentHTML('beforeend', chatHtml);
-                currentChatAppId = appId;
-        
-                markMessagesAsRead(appId, user.id);
-                updateUnreadCount();
-            }
-
-            function updateUnreadCount() {
-                const count = getUnreadCount(user.id);
-                const badge = document.getElementById('unreadBadge');
-                const btn = document.getElementById('globalChatBtn');
-        
-                if (count > 0) {
-                    badge.textContent = count > 9 ? '9+' : count;
-                    badge.style.display = 'inline-block';
-                    btn.style.display = 'flex';
-                } else {
-                    badge.style.display = 'none';
-                }
-            }
-
+            
             setInterval(() => {
-                if (currentChatAppId) {
-                    refreshChatMessages(currentChatAppId, user.id, user.fio.split(' ')[0], false);
-                }
+                if (currentChatAppId) refreshChatMessages(currentChatAppId, currentUser.id, currentUser.fio.split(' ')[0], false);
                 updateUnreadCount();
             }, 5000);
-
+            
             setTimeout(() => {
-                const apps = getUserApplications(user.id);
-                if (apps.length > 0) {
-                    document.getElementById('globalChatBtn').style.display = 'flex';
-                }
+                const apps = getUserApplications(currentUser.id);
+                if (apps.length > 0) document.getElementById('globalChatBtn').style.display = 'flex';
             }, 1000);
         })();
     </script>

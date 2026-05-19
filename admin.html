@@ -1037,7 +1037,7 @@
                 localStorage.setItem(CALENDAR_KEY, JSON.stringify(statuses));
             }
 
-            function setDateStatus(status) {
+            window.setDateStatus = function(status) {
                 if (!selectedDateStr) return;
                 const statuses = getCalendarStatus();
                 if (status === null) {
@@ -1049,21 +1049,21 @@
                 closeDateModal();
                 renderCalendar();
                 showToast(status === 'red' ? '🔴 Дата отмечена как занятая' : (status === 'green' ? '🟢 Дата отмечена как свободная' : '❌ Статус даты сброшен'), 'success');
-            }
+            };
 
-            function openDateModal(dateStr) {
+            window.openDateModal = function(dateStr) {
                 selectedDateStr = dateStr;
                 const statuses = getCalendarStatus();
                 const currentStatus = statuses[dateStr];
                 const statusText = currentStatus === 'red' ? '🔴 Занято' : (currentStatus === 'green' ? '🟢 Свободно' : '⚪ Не указано');
                 document.getElementById('selectedDateInfo').innerHTML = `${formatDateForDisplay(dateStr)}<br><small style="font-size: 14px;">Текущий статус: ${statusText}</small>`;
                 openModal('dateStatusModal');
-            }
+            };
 
-            function closeDateModal() {
+            window.closeDateModal = function() {
                 closeModal('dateStatusModal');
                 selectedDateStr = null;
-            }
+            };
 
             function formatDateForDisplay(dateStr) {
                 const [year, month, day] = dateStr.split('-');
@@ -1122,7 +1122,7 @@
                 }
             }
 
-            function prevMonth() {
+            window.prevMonth = function() {
                 if (currentMonth === 0) {
                     currentMonth = 11;
                     currentYear--;
@@ -1130,9 +1130,9 @@
                     currentMonth--;
                 }
                 renderCalendar();
-            }
+            };
 
-            function nextMonth() {
+            window.nextMonth = function() {
                 if (currentMonth === 11) {
                     currentMonth = 0;
                     currentYear++;
@@ -1140,7 +1140,7 @@
                     currentMonth++;
                 }
                 renderCalendar();
-            }
+            };
 
             function loadStatistics() {
                 const applications = getAllApplications();
@@ -1172,7 +1172,6 @@
                     </div>
                 `;
             }
-
             function loadAllApplications() {
                 const applications = getAllApplications();
                 const container = document.getElementById('applications-list');
@@ -1190,6 +1189,10 @@
                                 <span>🆔 ID: ${app.id}</span>
                                 ${app.service ? `<span>✂️ ${escapeHtml(app.service)}</span>` : ''}
                                 ${app.appointmentDate ? `<span>📅 ${formatDateShort(app.appointmentDate)}</span>` : ''}
+                                ${(() => {
+                                    const contacts = getUserContacts(app.userId);
+                                    return `<span>📞 ${contacts.phone}</span><span>✉️ ${contacts.email}</span>`;
+                                })()}
                             </div>
                         </div>
                         <div class="app-status-badge ${getStatusClass(app.status)}">${app.status}</div>
@@ -1219,7 +1222,7 @@
                 return date.toLocaleDateString('ru-RU');
             }
 
-            async function handleStatusChange(appId) {
+            window.handleStatusChange = async function(appId) {
                 const statusSelect = document.getElementById(`status-${appId}`);
                 if (!statusSelect) return;
                 
@@ -1261,7 +1264,7 @@
                 } else {
                     showToast('❌ ' + result.error, 'error');
                 }
-            }
+            };
 
             function loadCompletedApplications() {
                 const apps = getLastCompletedApplications();
@@ -1289,42 +1292,58 @@
                 if (e.key === 'Escape') {
                     closeDateModal();
                     document.querySelectorAll('.modal.active').forEach(modal => {
-                        closeModal(modal.id);
+                        if (modal.id === 'dateStatusModal') {
+                            closeDateModal();
+                        } else {
+                            closeModal(modal.id);
+                        }
                     });
                 }
             });
+
+            document.addEventListener('click', function(e) {
+                if (e.target.classList && e.target.classList.contains('modal')) {
+                    if (e.target.id === 'dateStatusModal') {
+                        closeDateModal();
+                    } else {
+                        closeModal(e.target.id);
+                    }
+                }
+            });
+
             function loadAdminChats() {
                 const chats = JSON.parse(localStorage.getItem(CHAT_KEY) || '{}');
                 const container = document.getElementById('chatList');
                 if (!container) return;
-        
+
                 const chatList = Object.entries(chats)
                     .filter(([id, chat]) => chat.messages.length > 0)
                     .sort((a, b) => new Date(b[1].lastMessageAt) - new Date(a[1].lastMessageAt));
-        
+
                 if (chatList.length === 0) {
                     container.innerHTML = '<div class="empty-state" style="padding: 40px;">Нет активных чатов</div>';
                     return;
                 }
-        
+
                 container.innerHTML = chatList.map(([appId, chat]) => {
                     const unreadCount = chat.messages.filter(m => !m.isAdmin && !m.isRead).length;
                     const lastMessage = chat.messages[chat.messages.length - 1];
-            
+                    const clientName = chat.clientName || chat.petName || 'Клиент';
+                    
                     return `
-                        <div class="chat-list-item ${unreadCount > 0 ? 'unread' : ''}" onclick="openAdminChat('${appId}', '${chat.petName}')">
+                        <div class="chat-list-item ${unreadCount > 0 ? 'unread' : ''}" onclick="openAdminChat('${appId}', '${escapeHtml(chat.petName)}', '${escapeHtml(clientName)}')">
                             <div class="chat-item-info">
                                 <h5>🐾 ${escapeHtml(chat.petName)}</h5>
-                                <small>${lastMessage ? lastMessage.message.substring(0, 40) + '...' : 'Нет сообщений'}</small>
+                                <small>👤 ${escapeHtml(clientName)} • ${lastMessage ? lastMessage.message.substring(0, 40) + '...' : 'Нет сообщений'}</small>
                             </div>
                             ${unreadCount > 0 ? `<span class="chat-unread-badge">${unreadCount}</span>` : ''}
                         </div>
                     `;
                 }).join('');
-        
+
                 const totalUnread = Object.values(chats).reduce((sum, chat) => 
                     sum + chat.messages.filter(m => !m.isAdmin && !m.isRead).length, 0);
-        
+
                 const unreadSpan = document.getElementById('adminUnreadCount');
                 if (unreadSpan) {
                     unreadSpan.textContent = totalUnread;
@@ -1332,26 +1351,37 @@
                 }
             }
 
-            function openAdminChat(appId, petName) {
+            function getUserContacts(userId) {
+                const users = JSON.parse(localStorage.getItem('groomroom_users') || '[]');
+                const user = users.find(u => u.id === userId);
+                return user ? { phone: user.phone || 'не указан', email: user.email || 'не указан' } : { phone: 'не указан', email: 'не указан' };
+            }
+
+            window.openAdminChat = function(appId, petName, clientName) {
                 const existing = document.getElementById(`admin-chat-${appId}`);
                 if (existing) {
                     existing.remove();
                     return;
                 }
-        
+
                 document.querySelectorAll('.admin-chat-window').forEach(el => el.remove());
-        
-                const chatHtml = renderChatModal(appId, petName, 'admin', 'Администратор', true);
+
+                const chatInfo = getChatInfo ? getChatInfo(appId) : null;
+                const displayClientName = chatInfo?.clientName || clientName || 'Клиент';
+                
+                const clientId = chatInfo?.clientId || 'client';
+                
+                const chatHtml = renderChatModal(appId, petName, 'admin', displayClientName, true);
                 document.body.insertAdjacentHTML('beforeend', chatHtml);
-        
+
                 const chatContainer = document.getElementById(`chat-container-${appId}`);
                 chatContainer.classList.add('admin-chat-window');
                 chatContainer.style.bottom = '80px';
                 chatContainer.style.right = '20px';
-        
+
                 markMessagesAsRead(appId, 'admin');
                 loadAdminChats();
-            }
+            };
 
             setInterval(() => {
                 loadAdminChats();
@@ -1388,21 +1418,21 @@
                 `).join('');
             }
 
-            function openReviewResponse(reviewId) {
+            window.openReviewResponse = function(reviewId) {
                 const response = prompt('Введите ответ на отзыв:');
                 if (response && response.trim()) {
                     adminRespondToReview(reviewId, response);
                     loadAdminReviews();
                     showToast('Ответ опубликован', 'success');
                 }
-            }
+            };
 
-            function refreshAnalytics() {
+            window.refreshAnalytics = function() {
                 const container = document.getElementById('analyticsContainer');
                 if (container) {
                     container.innerHTML = renderFullAnalytics();
                 }
-            }
+            };
 
             setTimeout(() => {
                 refreshAnalytics();
@@ -1411,6 +1441,11 @@
             const adminUser = getCurrentUser();
             if (!adminUser || adminUser.role !== 'admin') {
                 window.location.href = 'index.html';
+            }
+
+            const adminNameElement = document.getElementById('adminName');
+            if (adminNameElement && adminUser && adminUser.fio) {
+                const firstName = adminUser.fio.split(' ')[1] || adminUser.fio.split(' ')[0];
             }
 
             renderCalendar();

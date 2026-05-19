@@ -12,6 +12,7 @@ function maskSensitiveInputs() {
         });
     });
 }
+
 const STORAGE_KEYS = {
     USERS: 'groomroom_users',
     APPLICATIONS: 'groomroom_applications',
@@ -37,70 +38,111 @@ async function initData() {
                 login: 'admin', 
                 password: adminPasswordHash,
                 email: 'admin@groomroom.ru', 
-                role: 'admin' 
+                role: 'admin',
+                phone: '+7 999 999-99-99'
             }
         ];
         localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
     }
     
+    const currentUsers = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    if (!currentUsers.find(u => u.login === 'sakhalita')) {
+        const userPasswordHash = await hashPassword('123456');
+        currentUsers.push({
+            id: 100,
+            fio: 'Андреева Сахалита Яковлевна',
+            login: 'sakhalita',
+            password: userPasswordHash,
+            email: 'sakhalita@example.com',
+            phone: '+7 999 123-45-67',
+            role: 'user'
+        });
+        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(currentUsers));
+        console.log('Тестовый пользователь sakhalita создан');
+    }
+    
     if (!localStorage.getItem(STORAGE_KEYS.APPLICATIONS)) {
+        
+
+        const shpitzPhoto = 'img/shpits.jpg';
+        const taksaPhoto = 'img/taksa.jpg';
+        const haskiPhoto = 'img/haski.jpg';
         const testApplications = [
             {
                 id: 1001,
-                petName: 'Мопс - гигиена',
-                petPhoto: null,
+                petName: 'Мопс',
+                petPhoto: createTestPhoto('Мопс 🐶', '#ffa94d'),
                 status: 'Новая',
                 userId: 1,
                 createdAt: new Date().toISOString(),
-                resultPhoto: null
+                resultPhoto: null,
+                service: 'Гигиена',
+                appointmentDate: new Date(Date.now() + 86400000).toISOString().split('T')[0],
+                additionalMessage: 'Мопсик боится фена, пожалуйста, аккуратнее'
             },
             {
                 id: 1002,
-                petName: 'Кошка - стрижка',
-                petPhoto: null,
+                petName: 'Кошка',
+                petPhoto: createTestPhoto('Кошка 🐱', '#a29bfe'),
                 status: 'Обработка данных',
                 userId: 1,
                 createdAt: new Date(Date.now() - 86400000).toISOString(),
-                resultPhoto: null
+                resultPhoto: null,
+                service: 'Стрижка',
+                appointmentDate: new Date(Date.now() + 172800000).toISOString().split('T')[0],
+                additionalMessage: 'Стрижка под льва'
             },
             {
                 id: 1003,
-                petName: 'Йорк - экспресс-линька',
-                petPhoto: null,
+                petName: 'Йорк',
+                petPhoto: createTestPhoto('Йорк 🐕', '#74b9ff'),
                 status: 'Обработка данных',
                 userId: 1,
                 createdAt: new Date(Date.now() - 172800000).toISOString(),
-                resultPhoto: null
+                resultPhoto: null,
+                service: 'Экспресс-линька',
+                appointmentDate: new Date(Date.now() + 259200000).toISOString().split('T')[0],
+                additionalMessage: ''
             },
             {
                 id: 1004,
-                petName: 'Шпиц - тримминг',
-                petPhoto: null,
+                petName: 'Шпиц',
+                petPhoto: createTestPhoto('Шпиц 🐕', '#89c1ed'),
                 status: 'Услуга оказана',
                 userId: 1,
                 createdAt: new Date(Date.now() - 259200000).toISOString(),
-                resultPhoto: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%2389c1ed\'/%3E%3Ctext x=\'50\' y=\'110\' fill=\'white\'%3EFoto%3C/text%3E%3C/svg%3E'
+                resultPhoto: shpitzPhoto,
+                service: 'Тримминг',
+                appointmentDate: new Date(Date.now() - 432000000).toISOString().split('T')[0],
+                additionalMessage: 'Сделайте красивую стрижку'
             },
             {
                 id: 1005,
-                petName: 'Такса - стрижка',
-                petPhoto: null,
+                petName: 'Такса',
+                petPhoto: createTestPhoto('Такса 🐕', '#fe99c5'),
                 status: 'Услуга оказана',
                 userId: 1,
                 createdAt: new Date(Date.now() - 345600000).toISOString(),
-                resultPhoto: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%2389c1ed\'/%3E%3Ctext x=\'50\' y=\'110\' fill=\'white\'%3EFoto%3C/text%3E%3C/svg%3E'
+                resultPhoto: taksaPhoto,
+                service: 'Стрижка',
+                appointmentDate: new Date(Date.now() - 518400000).toISOString().split('T')[0],
+                additionalMessage: ''
             },
             {
                 id: 1006,
-                petName: 'Хаски - купание',
-                petPhoto: null,
+                petName: 'Хаски',
+                petPhoto: createTestPhoto('Хаски 🐕', '#51cf66'),
                 status: 'Услуга оказана',
                 userId: 1,
                 createdAt: new Date(Date.now() - 432000000).toISOString(),
-                resultPhoto: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%2389c1ed\'/%3E%3Ctext x=\'50\' y=\'110\' fill=\'white\'%3EFoto%3C/text%3E%3C/svg%3E'
+                resultPhoto: haskiPhoto,
+                service: 'Экспресс-линька',
+                appointmentDate: new Date(Date.now() - 604800000).toISOString().split('T')[0],
+                additionalMessage: 'Очень активный пёс'
             }
         ];
         localStorage.setItem(STORAGE_KEYS.APPLICATIONS, JSON.stringify(testApplications));
+        console.log('Тестовые заявки созданы');
     }
 }
 
@@ -223,3 +265,9 @@ function requireAdmin(redirectTo = 'index.html') {
     }
     return user;
 }
+
+window.login = login;
+window.logout = logout;
+window.getCurrentUser = getCurrentUser;
+window.register = register;
+window.initData = initData;

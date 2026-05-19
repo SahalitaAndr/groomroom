@@ -148,13 +148,13 @@
             <div class="modal-body">
                 <div class="form-group">
                     <input type="text" class="test-2-i-login" id="modalLogin" placeholder="Логин">
-                    <div class="test-2-e-login error-message"></div>
+                    <div class="error-message" id="loginError"></div>
                 </div>
                 <div class="form-group">
                     <input type="password" class="test-2-i-pass" id="modalPassword" placeholder="Пароль">
-                    <div class="test-2-e-pass error-message"></div>
+                    <div class="error-message" id="passwordError"></div>
                 </div>
-                <button class="test-2-b-log btn" onclick="handleModalLogin()">Войти</button>
+                <button class="test-2-b-log btn" id="loginBtn" onclick="handleModalLogin()">Войти</button>
                 <p style="text-align: center; margin-top: 20px;">
                     Нет аккаунта? 
                     <a href="#" onclick="closeModal('loginModal'); openModal('registerModal'); return false;">Зарегистрироваться</a>
@@ -179,6 +179,10 @@
                     <div class="test-1-e-login error-message"></div>
                 </div>
                 <div class="form-group">
+                    <input type="tel" class="test-1-i-phone" id="modalPhone" placeholder="+7 (___) ___-__-__">
+                    <div class="test-1-e-phone error-message"></div>
+                </div>
+                <div class="form-group">
                     <input type="email" class="test-1-i-email" id="modalEmail" placeholder="Email">
                     <div class="test-1-e-email error-message"></div>
                 </div>
@@ -190,10 +194,11 @@
                     <input type="password" class="test-1-i-pass2" id="modalRegPassword2" placeholder="Повтор пароля">
                     <div class="test-1-e-pass2 error-message"></div>
                 </div>
-                <div class="form-group checkbox">
-                    <label>
+                <div class="checkbox-group">
+                    <label class="checkbox-container">
                         <input type="checkbox" class="test-1-i-agree" id="modalAgree">
-                        Согласие на обработку персональных данных
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">Я соглашаюсь на обработку персональных данных</span>
                     </label>
                     <div class="test-1-e-agree error-message"></div>
                 </div>
@@ -209,10 +214,13 @@
     <script src="js/auth.js"></script>
     <script src="js/applications.js"></script>
     <script src="js/security.js"></script>
+    <script src="js/chat.js"></script>
     <script src="js/reviews.js"></script>
     <script src="js/modal.js"></script>
     <script src="js/toast.js"></script>
     <script>
+        window.handleModalLogin = null;
+        
         initData().then(() => {
             const currentUser = getCurrentUser();
             if (currentUser) {
@@ -220,13 +228,13 @@
                 if (navRight) {
                     const userName = currentUser.fio.split(' ')[0];
                     navRight.innerHTML = `
-                        <span style="color: white; margin-right: 15px;">👋 Привет, ${escapeHtml(userName)}</span>
+                        <span style="color: white; margin-right: 15px;">👋 Привет</span>
                         <button class="btn-nav" onclick="goToUserCabinet()">Личный кабинет</button>
-                        <button class="btn-nav btn-reg"   onclick="logout()">Выйти</button>
+                        <button class="btn-nav btn-reg" onclick="logout()">Выйти</button>
                     `;
                 }
             }
-    
+
             loadCompletedApps();
             setupModalClose();
         });
@@ -251,29 +259,49 @@
                 </div>
             `).join('');
         }
-        
-        async function handleModalLogin() {
-            const login = document.getElementById('modalLogin').value;
-            const password = document.getElementById('modalPassword').value;
+        window.handleModalLogin = async function() {
+            console.log('handleModalLogin вызвана');
+            const loginInput = document.getElementById('modalLogin').value;
+            const passwordInput = document.getElementById('modalPassword').value;
             
-            document.querySelector('#loginModal .test-2-e-login').innerHTML = '';
-            document.querySelector('#loginModal .test-2-e-pass').innerHTML = '';
+            const loginError = document.getElementById('loginError');
+            const passwordError = document.getElementById('passwordError');
             
-            const result = await login(login, password);
+            if (loginError) loginError.innerHTML = '';
+            if (passwordError) passwordError.innerHTML = '';
             
-            if (result.success) {
-                closeModal('loginModal');
-                if (result.user.role === 'admin') {
-                    window.location.href = 'admin.html';
-                } else {
-                    window.location.href = 'user.html';
-                }
-            } else {
-                document.querySelector('#loginModal .test-2-e-login').innerHTML = result.error;
+            if (!loginInput || !passwordInput) {
+                if (loginError) loginError.innerHTML = 'Заполните все поля';
+                return;
             }
-        }
+            
+            if (typeof login === 'undefined') {
+                console.error('Функция login не определена!');
+                if (loginError) loginError.innerHTML = 'Системная ошибка. Обновите страницу.';
+                return;
+            }
+            
+            try {
+                const result = await login(loginInput, passwordInput);
+                console.log('Результат входа:', result);
+                
+                if (result.success) {
+                    closeModal('loginModal');
+                    if (result.user.role === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else {
+                        window.location.href = 'user.html';
+                    }
+                } else {
+                    if (loginError) loginError.innerHTML = result.error;
+                }
+            } catch (error) {
+                console.error('Ошибка при входе:', error);
+                if (loginError) loginError.innerHTML = 'Ошибка при входе. Попробуйте позже.';
+            }
+        };
         
-        async function handleModalRegister() {
+        window.handleModalRegister = async function() {
             const fio = document.getElementById('modalFio').value;
             const login = document.getElementById('modalRegLogin').value;
             const email = document.getElementById('modalEmail').value;
@@ -304,9 +332,9 @@
                 if (result.errors.password2) document.querySelector('#registerModal .test-1-e-pass2').innerHTML = result.errors.password2;
                 if (result.errors.agree) document.querySelector('#registerModal .test-1-e-agree').innerHTML = result.errors.agree;
             }
-        }
+        };
 
-        function openBookingModal(serviceName) {
+        window.openBookingModal = function(serviceName) {
             closeModal('modalService1');
             closeModal('modalService2');
             closeModal('modalService3');
@@ -322,9 +350,9 @@
             } else {
                 openModal('loginModal');
             }
-        }
+        };
 
-        function goToUserCabinet() {
+        window.goToUserCabinet = function() {
             const user = getCurrentUser();
             if (user) {
                 if (user.role === 'admin') {
@@ -333,13 +361,14 @@
                     window.location.href = 'user.html';
                 }
             }
-        }
-        function loadReviews() {
+        };
+        
+        window.loadReviews = function() {
             const container = document.getElementById('reviews-container');
             if (container) {
                 container.innerHTML = renderReviewsBlock();
             }
-        }
+        };
         
         setupModalClose();
         loadCompletedApps();
@@ -352,6 +381,141 @@
                 });
             }
         });
+        setTimeout(() => {
+            const btn = document.querySelector('.test-2-b-log');
+            console.log('Кнопка входа найдена:', btn);
+            if (btn) {
+                console.log('onclick атрибут:', btn.getAttribute('onclick'));
+            }
+        }, 1000);
+        const phoneInput = document.getElementById('modalPhone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+                let value = this.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
+                
+                let formatted = '';
+                if (value.length > 0) {
+                    formatted = '+7';
+                    if (value.length > 1) {
+                        formatted += ' (' + value.substring(1, 4);
+                    }
+                    if (value.length >= 5) {
+                        formatted += ') ' + value.substring(4, 7);
+                    }
+                    if (value.length >= 8) {
+                        formatted += '-' + value.substring(7, 9);
+                    }
+                    if (value.length >= 10) {
+                        formatted += '-' + value.substring(9, 11);
+                    }
+                }
+                this.value = formatted;
+            });
+        }
+        function addRealisticReviews() {
+            const reviews = JSON.parse(localStorage.getItem('groomroom_reviews') || '[]');
+            
+            const hasRealReviews = reviews.some(r => [10001, 10002, 10003, 10004, 10005, 10006].includes(r.id));
+            if (hasRealReviews) return;
+            
+            const realisticReviews = [
+                {
+                    id: 10001,
+                    applicationId: 1004,
+                    userId: 1,
+                    rating: 5,
+                    text: "Привели нашего Йорика на тримминг впервые, очень боялись. Мастер оказалась настоящим профессионалом! Йорик сидел спокойно, а результат превзошёл все ожидания. Шёрстка блестит, пахнет приятно, и вид у собачки очень ухоженный. Обязательно придём ещё! Спасибо команде GroomRoom! 🐕✨",
+                    photo: null,
+                    createdAt: new Date(Date.now() - 15 * 86400000).toISOString(),
+                    likes: 24,
+                    adminResponded: true,
+                    adminResponse: "Спасибо за тёплые слова! Йорик - настоящий умница, с ним было очень приятно работать. Ждём вас снова! 🐾",
+                    adminResponseDate: new Date(Date.now() - 14 * 86400000).toISOString()
+                },
+                {
+                    id: 10002,
+                    applicationId: 1005,
+                    userId: 2,
+                    rating: 5,
+                    text: "Делали стрижку нашей Таксе. Очень аккуратно и профессионально! Учли все наши пожелания, собака выглядит шикарно. Отдельное спасибо за индивидуальный подход - наша девочка очень пугливая, но мастер нашёл к ней подход. Рекомендуем! ❤️",
+                    photo: null,
+                    createdAt: new Date(Date.now() - 25 * 86400000).toISOString(),
+                    likes: 18,
+                    adminResponded: true,
+                    adminResponse: "Благодарим за отзыв! Наша задача - сделать процедуру комфортной для каждого питомца. Рады, что вам всё понравилось! 🐶",
+                    adminResponseDate: new Date(Date.now() - 24 * 86400000).toISOString()
+                },
+                {
+                    id: 10003,
+                    applicationId: 1006,
+                    userId: 3,
+                    rating: 4,
+                    text: "Экспресс-линьку делали впервые. Результат отличный - шерсти дома стало реально меньше на 90%! Процедура заняла около часа, собака чувствовала себя комфортно. Минус звезду за то, что пришлось немного подождать своей очереди. Но в целом очень довольны! 🐕",
+                    photo: null,
+                    createdAt: new Date(Date.now() - 20 * 86400000).toISOString(),
+                    likes: 12,
+                    adminResponded: true,
+                    adminResponse: "Спасибо за честный отзыв! Приносим извинения за ожидание. В следующий раз постараемся принять вас без задержек. Рады, что результат вам понравился! 🍃",
+                    adminResponseDate: new Date(Date.now() - 19 * 86400000).toISOString()
+                },
+                {
+                    id: 10004,
+                    applicationId: 1007,
+                    userId: 4,
+                    rating: 5,
+                    text: "Записывались на гигиену для кота. Очень боялась, что будет стресс, но всё прошло замечательно! Мастер очень ласково обращалась с питомцем, постригла когти, почистила ушки. Кот после процедуры выглядел довольным и ухоженным. Спасибо большое! 😺💕",
+                    photo: null,
+                    createdAt: new Date(Date.now() - 10 * 86400000).toISOString(),
+                    likes: 31,
+                    adminResponded: false,
+                    adminResponse: null,
+                    adminResponseDate: null
+                },
+                {
+                    id: 10005,
+                    applicationId: 1008,
+                    userId: 5,
+                    rating: 5,
+                    text: "Супер место! Уже второй раз приводим своего пуделя на стрижку. Всегда всё чисто, аккуратно, мастера вежливые. В прошлый раз сделали модельную стрижку - выглядели как с выставки! Цены адекватные, качество отличное. 10/10 ⭐⭐⭐⭐⭐",
+                    photo: null,
+                    createdAt: new Date(Date.now() - 35 * 86400000).toISOString(),
+                    likes: 42,
+                    adminResponded: true,
+                    adminResponse: "Спасибо, что выбираете нас! Ваш пудель - настоящая звезда, с ним одно удовольствие работать. До новых встреч! ✂️🐩",
+                    adminResponseDate: new Date(Date.now() - 34 * 86400000).toISOString()
+                },
+                {
+                    id: 10006,
+                    applicationId: 1009,
+                    userId: 6,
+                    rating: 5,
+                    text: "Привели хаски на экспресс-линьку. Это просто магия! За один сеанс вычесали столько шерсти, что можно было бы ещё одну собаку сделать 🤣 Дома теперь чистота, а пёс выглядит свежим и счастливым. Огромное спасибо мастеру за терпение и профессионализм! 🐺❄️",
+                    photo: null,
+                    createdAt: new Date(Date.now() - 5 * 86400000).toISOString(),
+                    likes: 56,
+                    adminResponded: false,
+                    adminResponse: null,
+                    adminResponseDate: null
+                }
+            ];
+            
+            realisticReviews.forEach(review => {
+                if (!reviews.some(r => r.id === review.id)) {
+                    reviews.unshift(review);
+                }
+            });
+            
+            localStorage.setItem('groomroom_reviews', JSON.stringify(reviews));
+            console.log('✅ Добавлены реалистичные отзывы');
+        }
+        
+        setTimeout(() => {
+            addRealisticReviews();
+            if (typeof loadReviews === 'function') {
+                loadReviews();
+            }
+        }, 500);
     </script>
     <div id="modalService1" class="modal">
         <div class="modal-content" style="max-width: 550px;">
@@ -449,6 +613,5 @@
             </div>
         </div>
     </div>
-    <script src="js/toast.js"></script>
 </body>
 </html>

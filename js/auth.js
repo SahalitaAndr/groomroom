@@ -28,6 +28,27 @@ async function hashPassword(password) {
     return hashHex;
 }
 
+function createTestPhoto(text, bgColor) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 200;
+    canvas.height = 200;
+    const ctx = canvas.getContext('2d');
+    
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 24px "Montserrat", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+    
+    ctx.font = '48px sans-serif';
+    ctx.fillText('🐾', canvas.width / 2, canvas.height / 1.5);
+    
+    return canvas.toDataURL('image/png');
+}
+
 async function initData() {
     if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
         const adminPasswordHash = await hashPassword('grooming');

@@ -1067,6 +1067,9 @@ input, select, textarea {
         font-size: 14px;
         padding: 6px 16px;
     }
+}
+
+@media (max-width: 768px) {
     .btn-nav {
         font-size: 14px !important;
     }
@@ -1163,52 +1166,105 @@ input, select, textarea {
     }
     
     .grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
+        display: flex;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 15px !important;
+        margin: 0 auto;
     }
-    
+
     .сcard {
-        width: 100%;
-        max-width: 280px;
+        width: calc(50% - 15px) !important;
+        max-width: 160px !important;
+        margin: 0 !important;
+        box-sizing: border-box;
     }
     
     .card {
-        width: 100%;
-        height: auto;
-        min-height: 170px;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 170px !important;
+        padding: 18px 12px 12px 12px !important;
+        margin-bottom: 12px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
     }
     
     .card h4 {
-        font-size: 18px;
+        font-size: 16px !important;
+        margin-bottom: 8px !important;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .fotous {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 5px 0;
     }
     
     .fotous img {
-        max-height: 90px;
+        max-height: 85px !important;
+        width: auto;
+        object-fit: contain;
     }
     
     .сcard .btn {
-        width: 100%;
-        padding: 10px 20px;
-        font-size: 14px;
+        width: 100% !important;
+        padding: 8px 15px !important;
+        font-size: 12px !important;
+        text-align: center;
+        box-sizing: border-box;
     }
 
     .completed-section {
         margin: 40px 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .completed-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        gap: 15px !important;
+        padding: 10px 5px 20px 5px !important;
+        margin-top: 20px !important;
+        scroll-snap-type: x mandatory;
+    }
+
+    .completed-card {
+        flex: 0 0 auto !important;
+        width: 200px !important;
+        scroll-snap-align: start;
     }
 
     .test-t-photo {
-        height: 130px;
+        height: 180px;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f5f5f5;
+    }
+
+    .test-t-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .test-t-name {
-        font-size: 13px;
-        padding: 10px;
+        font-size: 14px !important;
+        padding: 12px !important;
     }
 
     .reviews-section {
@@ -1216,8 +1272,8 @@ input, select, textarea {
     }
 
     .avg-rating {
-        padding: 12px 20px !important;
-        gap: 8px;
+        padding: 12px 24px !important;
+        gap: 10px;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -1301,14 +1357,6 @@ input, select, textarea {
 
     .modal-body {
         padding: 20px !important;
-    }
-
-    .form-group input,
-    .form-group input[type="text"],
-    .form-group input[type="password"],
-    .form-group input[type="email"] {
-        padding: 10px 14px !important;
-        font-size: 14px !important;
     }
 
     .stats-grid {
@@ -1628,94 +1676,25 @@ input, select, textarea {
     .star {
         font-size: 24px;
     }
+
+    .checkbox-text {
+        font-size: 12px;
+    }
+    
+    .checkmark {
+        height: 20px;
+        width: 20px;
+    }
+    
+    .checkbox-container .checkmark:after {
+        left: 6px;
+        top: 2px;
+        width: 5px;
+        height: 9px;
+    }
 }
 
 @media (max-width: 480px) {
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-
-    .analytics-stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .admin-profile-card {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .admin-info {
-        flex-direction: column;
-    }
-
-    .completed-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    h1, h2 {
-        font-size: 34px !important;
-    }
-
-    h3 {
-        font-size: 30px !important;
-    }
-
-    .title {
-        font-size: 32px !important;
-    }
-
-    .calendar-header h3 {
-        font-size: 20px !important;
-    }
-
-    .nav-left, .nav-right {
-        gap: 10px;
-    }
-
-    .btn-nav {
-        font-size: 12px !important;
-    }
-
-    .btn-reg {
-        padding: 5px 12px !important;
-        font-size: 12px !important;
-    }
-
-    .weekday {
-        font-size: 10px !important;
-    }
-
-    .calendar-day {
-        min-height: 48px !important;
-    }
-
-    .day-number {
-        font-size: 12px !important;
-    }
-}
-
-@media (max-width: 896px) and (orientation: landscape) {
-    .hero {
-        flex-direction: row;
-    }
-
-    .glavfoto img {
-        max-height: 180px;
-    }
-
-    .chat-container {
-        width: 320px !important;
-        left: auto;
-        right: 15px;
-    }
-
-    .modal-content {
-        max-height: 85vh;
-    }
-}
-
-@media (max-width: 380px) {
     .container, .admin-container, .profile-container {
         padding: 8px !important;
     }
@@ -1730,12 +1709,12 @@ input, select, textarea {
     }
     
     .btn-nav {
-        font-size: 11px !important;
+        font-size: 12px !important;
     }
     
     .btn-reg {
-        padding: 4px 10px !important;
-        font-size: 11px !important;
+        padding: 5px 12px !important;
+        font-size: 12px !important;
     }
     
     .nav-left, .nav-right {
@@ -1743,11 +1722,11 @@ input, select, textarea {
     }
     
     h1, h2 {
-        font-size: 28px !important;
+        font-size: 32px !important;
     }
     
     h3, .title {
-        font-size: 28px !important;
+        font-size: 30px !important;
     }
     
     h4 {
@@ -1755,7 +1734,7 @@ input, select, textarea {
     }
     
     h5 {
-        font-size: 13px !important;
+        font-size: 14px !important;
     }
     
     .hero {
@@ -1786,7 +1765,7 @@ input, select, textarea {
     }
     
     .btn {
-        padding: 8px 20px !important;
+        padding: 10px 25px !important;
         font-size: 14px !important;
         width: 100%;
         box-sizing: border-box;
@@ -1802,101 +1781,52 @@ input, select, textarea {
     }
     
     .grid {
-        display: flex;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 15px !important;
-        margin: 0 auto;
+        gap: 12px !important;
     }
 
     .сcard {
-        width: calc(50% - 15px) !important;
-        max-width: 124px !important;
-        margin: 0 !important;
-        box-sizing: border-box;
+        width: calc(50% - 12px) !important;
+        max-width: 145px !important;
     }
     
     .card {
-        width: 100% !important;
-        height: auto !important;
         min-height: 150px !important;
-        padding: 15px 8px 0px 8px !important;
-        margin-bottom: 12px !important;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        box-sizing: border-box;
+        padding: 12px 8px 8px 8px !important;
     }
     
     .card h4 {
-        font-size: 16px !important;
-        margin-bottom: 8px !important;
-        text-align: center;
-        width: 100%;
-    }
-    
-    .fotous {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin: 5px 0;
+        font-size: 14px !important;
     }
     
     .fotous img {
         max-height: 70px !important;
-        width: auto;
-        object-fit: contain;
     }
     
     .сcard .btn {
-        width: 100% !important;
-        padding: 8px 12px !important;
-        font-size: 12px !important;
-        text-align: center;
-        box-sizing: border-box;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        padding: 6px 10px !important;
+        font-size: 11px !important;
     }
     
-    .completed-grid {
-        gap: 8px !important;
-    }
-    
-   .test-t-photo {
-        width: 100%;
-        height: 200px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #f5f5f5;
+    .completed-card {
+        width: 160px !important;
     }
 
-    .test-t-photo img {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        object-fit: cover;
+    .test-t-photo {
+        height: 140px;
     }
-    
+
     .test-t-name {
-        font-size: 11px !important;
+        font-size: 12px !important;
         padding: 8px !important;
     }
     
     .avg-rating {
         padding: 10px 15px !important;
-        gap: 5px;
-        flex-wrap: wrap;
+        gap: 8px;
     }
     
     .avg-rating-number {
-        font-size: 24px !important;
+        font-size: 26px !important;
     }
     
     .stars {
@@ -1939,862 +1869,43 @@ input, select, textarea {
     }
     
     .footer-right h3 {
-        font-size: 16px !important;
+        font-size: 18px !important;
     }
     
     .logo-footer {
         max-height: 40px !important;
     }
     
-    .application-card, .application-item {
-        padding: 12px !important;
-    }
-    
-    .app-pet-name {
-        font-size: 14px !important;
-    }
-    
-    .app-pet-photo-mini {
-        width: 30px !important;
-        height: 30px !important;
-    }
-    
-    .app-service, .app-date, .app-message {
-        font-size: 10px !important;
-    }
-    
-    .status-badge {
-        padding: 3px 10px !important;
-        font-size: 10px !important;
-    }
-    
-    .action-btn {
-        font-size: 16px !important;
-        padding: 5px !important;
-    }
-    
-    .form-body {
-        padding: 15px !important;
-    }
-    
-    .form-group label {
-        font-size: 12px !important;
-    }
-    
-    select, input[type="text"], input[type="date"], textarea {
-        padding: 8px 12px !important;
-        font-size: 12px !important;
-    }
-    
-    .btn-submit {
-        padding: 10px 15px !important;
-        font-size: 14px !important;
-    }
-    
-    .filter-btn {
-        padding: 4px 12px !important;
-        font-size: 11px !important;
-    }
-    
-    .filters-section {
-        gap: 8px !important;
-        justify-content: center;
-    }
-    
-    .calendar-header {
-        padding: 10px 12px !important;
-    }
-    
-    .calendar-header h3, .calendar-header h4 {
-        font-size: 18px !important;
-    }
-    
-    .calendar-nav button {
-        width: 28px !important;
-        height: 28px !important;
-        font-size: 14px !important;
-    }
-    
-    .current-month {
-        font-size: 13px !important;
-        min-width: 110px;
-    }
-    
-    .calendar-legend {
-        padding: 8px 12px !important;
-        gap: 8px;
-    }
-    
-    .legend-item {
-        font-size: 9px !important;
-    }
-    
-    .legend-color {
-        width: 14px !important;
-        height: 14px !important;
-    }
-    
-    .calendar-grid {
-        padding: 10px !important;
-    }
-    
-    .weekday {
-        font-size: 9px !important;
-        padding: 4px !important;
-    }
-    
-    .calendar-days {
-        gap: 3px;
-    }
-    
     .calendar-day {
-        min-height: 42px !important;
-        border-radius: 10px;
+        min-height: 48px !important;
     }
     
     .day-number {
-        font-size: 11px !important;
-    }
-    
-    .day-status {
-        width: 18px !important;
-        height: 18px !important;
-        font-size: 9px !important;
-    }
-    
-    .stats-grid {
-        gap: 8px !important;
-    }
-    
-    .stat-card {
-        padding: 10px 8px !important;
-    }
-    
-    .stat-icon {
-        font-size: 24px !important;
-    }
-    
-    .stat-number {
-        font-size: 22px !important;
-    }
-    
-    .stat-label {
-        font-size: 9px !important;
-    }
-    
-    .analytics-container {
-        padding: 15px !important;
-    }
-    
-    .analytics-stats-grid {
-        gap: 6px !important;
-    }
-    
-    .analytics-stat-card {
-        padding: 10px 5px !important;
-    }
-    
-    .analytics-icon {
-        font-size: 22px !important;
-    }
-    
-    .analytics-number {
-        font-size: 18px !important;
-    }
-    
-    .analytics-label {
-        font-size: 8px !important;
-    }
-    
-    .chart-card {
-        padding: 10px !important;
-    }
-    
-    .chart-card h4 {
-        font-size: 13px !important;
-    }
-    
-    .bar-item, .line-point {
-        width: 35px !important;
-    }
-    
-    .bar {
-        width: 22px !important;
-    }
-    
-    .line-bar {
-        width: 22px !important;
-    }
-    
-    .bar-label, .line-label {
-        font-size: 8px !important;
-    }
-    
-    .chat-list-item {
-        padding: 10px 12px !important;
-    }
-    
-    .chat-item-info h5 {
         font-size: 12px !important;
     }
     
-    .chat-item-info small {
-        font-size: 10px !important;
-    }
-    
-    .chat-unread-badge {
-        font-size: 9px !important;
-        padding: 2px 6px !important;
-        min-width: 22px;
-    }
-    
-    .modal-content {
-        width: 95% !important;
-        margin: 5px !important;
-    }
-    
-    .modal-header {
-        padding: 12px 15px !important;
-    }
-    
-    .modal-header h3 {
-        font-size: 18px !important;
-    }
-    
-    .modal-body {
-        padding: 15px !important;
-    }
-    
-    .modal-close {
-        font-size: 22px !important;
-    }
-    
-    .chat-container {
-        width: calc(100% - 20px) !important;
-        left: 10px !important;
-        right: 10px !important;
-        bottom: 10px !important;
-    }
-    
-    .chat-messages {
-        height: 250px !important;
-    }
-    
-    .chat-message-text {
-        font-size: 12px !important;
-    }
-    
-    .chat-message-time {
-        font-size: 9px !important;
-    }
-    
-    .chat-input-area textarea {
-        font-size: 12px !important;
-    }
-    
-    .chat-send-btn {
-        width: 35px !important;
-        height: 35px !important;
-        font-size: 16px !important;
-    }
-    
-    .chat-button {
-        width: 42px !important;
-        height: 42px !important;
-        font-size: 18px !important;
-        bottom: 10px !important;
-        right: 10px !important;
-    }
-    
-    .profile-body {
-        padding: 15px !important;
-    }
-    
-    .user-name {
-        font-size: 18px !important;
-    }
-    
-    .pet-name-display {
-        font-size: 13px !important;
-    }
-    
-    .contact-item-small {
-        padding: 4px 10px !important;
-        font-size: 11px !important;
-    }
-    
-    .contact-item-small input {
-        font-size: 11px !important;
-        min-width: 90px;
-    }
-    
-    .pet-avatar {
-        width: 65px !important;
-        height: 65px !important;
-    }
-    
-    .avatar-edit-overlay {
-        font-size: 8px !important;
-    }
-    
-    .admin-profile-card {
-        padding: 15px !important;
-    }
-    
-    .admin-avatar {
-        width: 45px !important;
-        height: 45px !important;
-        font-size: 24px !important;
-    }
-    
-    .admin-text h2 {
-        font-size: 18px !important;
-    }
-    
-    .admin-text p {
-        font-size: 11px !important;
-    }
-    
-    .logout-admin-btn {
-        padding: 8px 20px !important;
-        font-size: 13px !important;
-    }
-    
-    .btn-change {
-        padding: 5px 12px !important;
-        font-size: 10px !important;
-    }
-    
-    .status-select {
-        padding: 4px 10px !important;
-        font-size: 10px !important;
-    }
-    
-    .photo-label {
-        padding: 4px 10px !important;
-        font-size: 10px !important;
-    }
-    
-    .result-photo {
-        width: 35px !important;
-        height: 35px !important;
-    }
-    
-    .empty-state {
-        padding: 20px 15px !important;
-        font-size: 12px !important;
-    }
-    
-    .empty-state::before {
-        font-size: 28px !important;
-    }
-    
-    .stars-input {
-        gap: 4px;
-    }
-    
-    .star {
-        font-size: 20px !important;
-    }
-    
-    .review-buttons .btn, 
-    .review-buttons .btn-small {
-        padding: 6px 12px !important;
-        font-size: 12px !important;
-    }
-}
-
-@media (max-width: 380px) {
-    .admin-profile-card {
-        flex-direction: column !important;
-        text-align: center !important;
-        padding: 15px !important;
-    }
-
-    .admin-info {
-        flex-direction: column !important;
-        gap: 10px !important;
-    }
-
-    .admin-avatar {
-        width: 55px !important;
-        height: 55px !important;
-        font-size: 28px !important;
-        margin: 0 auto !important;
-    }
-
-    .admin-text h2 {
-        font-size: 20px !important;
-    }
-
-    .admin-text p {
-        font-size: 12px !important;
-    }
-
-    .logout-admin-btn {
-        width: 100% !important;
-        padding: 10px !important;
-    }
-
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
-    }
-
-    .stat-card {
-        padding: 12px 8px !important;
-    }
-
-    .stat-icon {
-        font-size: 28px !important;
-    }
-
-    .stat-number {
-        font-size: 24px !important;
-    }
-
-    .stat-label {
-        font-size: 10px !important;
-    }
-
-    .calendar-header {
-        flex-direction: column !important;
-        text-align: center !important;
-        padding: 12px !important;
-    }
-
-    .calendar-header h3 {
-        font-size: 20px !important;
-    }
-
-    .calendar-nav {
-        margin-top: 5px !important;
-    }
-
-    .calendar-nav button {
-        width: 32px !important;
-        height: 32px !important;
-        font-size: 16px !important;
-    }
-
-    .current-month {
-        font-size: 14px !important;
-        min-width: 120px !important;
-    }
-
-    .calendar-legend {
-        padding: 10px !important;
-        gap: 10px !important;
-        justify-content: center !important;
-    }
-
-    .legend-item {
-        font-size: 10px !important;
-    }
-
-    .legend-color {
-        width: 16px !important;
-        height: 16px !important;
-    }
-
-    .calendar-grid {
-        padding: 10px !important;
-    }
-
     .weekday {
         font-size: 10px !important;
-        padding: 5px !important;
-    }
-
-    .calendar-days {
-        gap: 4px !important;
-    }
-
-    .calendar-day {
-        min-height: 50px !important;
-    }
-
-    .day-number {
-        font-size: 12px !important;
-    }
-
-    .day-status {
-        width: 22px !important;
-        height: 22px !important;
-        font-size: 10px !important;
-    }
-
-    .analytics-container {
-        padding: 12px !important;
-    }
-
-    .analytics-stats-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 8px !important;
-    }
-
-    .analytics-stat-card {
-        padding: 12px 5px !important;
-    }
-
-    .analytics-icon {
-        font-size: 24px !important;
-    }
-
-    .analytics-number {
-        font-size: 20px !important;
-    }
-
-    .analytics-label {
-        font-size: 9px !important;
-    }
-
-    .analytics-charts {
-        gap: 12px !important;
-    }
-
-    .chart-card {
-        padding: 12px !important;
-    }
-
-    .chart-card h4 {
-        font-size: 14px !important;
-    }
-
-    .bar-chart, .line-chart {
-        height: 150px !important;
-    }
-
-    .bar-item, .line-point {
-        width: 40px !important;
-    }
-
-    .bar, .line-bar {
-        width: 25px !important;
-    }
-
-    .bar-label, .line-label {
-        font-size: 9px !important;
-    }
-
-    .admin-chat-panel .chat-panel-header {
-        flex-direction: column !important;
-        text-align: center !important;
-        padding: 12px !important;
-    }
-
-    .chat-panel-header h4 {
-        font-size: 18px !important;
-    }
-
-    .chat-list-item {
-        padding: 10px 12px !important;
-    }
-
-    .chat-item-info h5 {
-        font-size: 13px !important;
-    }
-
-    .chat-item-info small {
-        font-size: 10px !important;
-    }
-    .applications-card .card-header {
-        padding: 12px !important;
-        text-align: center !important;
-    }
-
-    .applications-card .card-header h3 {
-        font-size: 18px !important;
-    }
-
-    .applications-list {
-        padding: 12px !important;
-    }
-
-    .application-item {
-        padding: 12px !important;
-        flex-direction: column !important;
-        text-align: center !important;
-    }
-
-    .app-info {
-        width: 100% !important;
-    }
-
-    .app-pet-name {
-        font-size: 15px !important;
-        justify-content: center !important;
-    }
-
-    .app-details {
-        justify-content: center !important;
-        font-size: 11px !important;
-        gap: 8px !important;
-    }
-
-    .app-actions {
-        justify-content: center !important;
-        flex-wrap: wrap !important;
-    }
-
-    .status-select {
-        font-size: 11px !important;
-        padding: 5px 10px !important;
-    }
-
-    .btn-change {
-        padding: 5px 12px !important;
-        font-size: 11px !important;
-    }
-
-    .photo-label {
-        padding: 5px 10px !important;
-        font-size: 10px !important;
-    }
-
-    .result-photo {
-        width: 40px !important;
-        height: 40px !important;
-    }
-
-    .reviews-management-card .card-header {
-        padding: 12px !important;
-        text-align: center !important;
-    }
-
-    .reviews-management-card .card-header h3 {
-        font-size: 18px !important;
-    }
-
-    .reviews-management-card .application-item {
-        flex-direction: column !important;
-        text-align: center !important;
-    }
-
-    .reviews-management-card .app-pet-name {
-        justify-content: center !important;
-        flex-wrap: wrap !important;
-    }
-
-    .reviews-management-card .app-message {
-        font-size: 11px !important;
     }
 }
 
-@media (max-width: 380px) {
-    .profile-card .profile-header {
-        flex-direction: column !important;
-        text-align: center !important;
-        padding: 12px !important;
+@media (max-width: 896px) and (orientation: landscape) {
+    .hero {
+        flex-direction: row;
     }
 
-    .profile-header h3 {
-        font-size: 20px !important;
-    }
-
-    .logout-btn {
-        width: 100% !important;
-        padding: 8px !important;
-    }
-
-    .profile-body {
-        padding: 15px !important;
-    }
-
-    .profile-info {
-        flex-direction: column !important;
-        text-align: center !important;
-        gap: 12px !important;
-    }
-
-    .pet-avatar {
-        width: 70px !important;
-        height: 70px !important;
-        margin: 0 auto !important;
-    }
-
-    .user-name {
-        font-size: 18px !important;
-    }
-
-    .pet-name-display {
-        font-size: 14px !important;
-        justify-content: center !important;
-    }
-
-    .contact-info {
-        justify-content: center !important;
-        gap: 10px !important;
-    }
-
-    .contact-item-small {
-        padding: 4px 10px !important;
-        font-size: 11px !important;
-    }
-
-    .contact-item-small input {
-        font-size: 11px !important;
-        min-width: 100px !important;
-    }
-
-    .calendar-card .calendar-header {
-        flex-direction: column !important;
-        text-align: center !important;
-        padding: 12px !important;
-    }
-
-    .calendar-header h4 {
-        font-size: 18px !important;
-    }
-
-    .form-card .form-header {
-        padding: 12px !important;
-        text-align: center !important;
-    }
-
-    .form-header h4 {
-        font-size: 18px !important;
-    }
-
-    .form-body {
-        padding: 15px !important;
-    }
-
-    .form-group label {
-        font-size: 12px !important;
-    }
-
-    select, input[type="text"], input[type="date"], textarea {
-        padding: 8px 12px !important;
-        font-size: 12px !important;
-    }
-
-    .btn-submit {
-        padding: 10px 15px !important;
-        font-size: 14px !important;
-    }
-
-    .photo-preview {
-        width: 60px !important;
-        height: 60px !important;
-    }
-
-    .filters-section {
-        gap: 8px !important;
-        justify-content: center !important;
-    }
-
-    .filter-btn {
-        padding: 5px 12px !important;
-        font-size: 11px !important;
-    }
-
-    .applications-card .applications-header {
-        padding: 12px !important;
-        text-align: center !important;
-    }
-
-    .applications-header h4 {
-        font-size: 18px !important;
-    }
-
-    .application-card {
-        padding: 12px !important;
-        flex-direction: column !important;
-        text-align: center !important;
-    }
-
-    .app-info {
-        width: 100% !important;
-    }
-
-    .app-pet-name {
-        justify-content: center !important;
-        font-size: 15px !important;
-    }
-
-    .app-pet-photo-mini {
-        width: 35px !important;
-        height: 35px !important;
-    }
-
-    .app-service, .app-date, .app-message {
-        font-size: 11px !important;
-    }
-
-    .status-badge {
-        padding: 4px 12px !important;
-        font-size: 11px !important;
-    }
-
-    .app-actions {
-        justify-content: center !important;
-        gap: 8px !important;
-    }
-
-    .action-btn {
-        font-size: 18px !important;
-        padding: 6px !important;
-    }
-
-    .modal-content {
-        width: 95% !important;
-        margin: 10px auto !important;
-    }
-
-    .modal-header {
-        padding: 12px 15px !important;
-    }
-
-    .modal-header h3 {
-        font-size: 18px !important;
-    }
-
-    .modal-body {
-        padding: 15px !important;
+    .glavfoto img {
+        max-height: 180px;
     }
 
     .chat-container {
-        width: calc(100% - 20px) !important;
-        left: 10px !important;
-        right: 10px !important;
-        bottom: 10px !important;
+        width: 320px !important;
+        left: auto;
+        right: 15px;
     }
 
-    .chat-messages {
-        height: 250px !important;
-    }
-
-    .chat-message-text {
-        font-size: 12px !important;
-    }
-
-    .chat-send-btn {
-        width: 38px !important;
-        height: 38px !important;
-        font-size: 16px !important;
-    }
-
-    .chat-button {
-        width: 44px !important;
-        height: 44px !important;
-        font-size: 20px !important;
-        bottom: 10px !important;
-        right: 10px !important;
-    }
-
-    .stars-input {
-        gap: 5px !important;
-    }
-
-    .star {
-        font-size: 22px !important;
-    }
-
-    .review-buttons .btn,
-    .review-buttons .btn-small {
-        padding: 6px 12px !important;
-        font-size: 12px !important;
+    .modal-content {
+        max-height: 85vh;
     }
 }
 
@@ -2802,15 +1913,6 @@ input, select, textarea {
     0% { transform: scale(1); background: linear-gradient(135deg, #fe99c5, #ff85b8); }
     50% { transform: scale(1.1); background: linear-gradient(135deg, #ff85b8, #fe99c5); }
     100% { transform: scale(1); background: linear-gradient(135deg, #fe99c5, #ff85b8); }
-}
-
-.completed-card {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s;
-    cursor: pointer;
 }
 
 .test-t-photo {
@@ -2863,7 +1965,7 @@ input[type="tel"]::placeholder {
     font-size: 14px;
     letter-spacing: normal;
 }
-/* Красивая галочка (checkbox) */
+
 .checkbox-group {
     margin-bottom: 20px;
 }
@@ -2943,25 +2045,6 @@ input[type="tel"]::placeholder {
     text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-    .checkbox-text {
-        font-size: 12px;
-    }
-    
-    .checkmark {
-        height: 20px;
-        width: 20px;
-    }
-    
-    .checkbox-container .checkmark:after {
-        left: 6px;
-        top: 2px;
-        width: 5px;
-        height: 9px;
-    }
-}
-
-/* Улучшенные стили для отзывов */
 .reviews-section h3 {
     text-align: center;
     margin-bottom: 40px;
@@ -3112,40 +2195,3 @@ input[type="tel"]::placeholder {
     font-size: 14px;
     color: #666;
 }
-
-/* Адаптация для мобильных */
-@media (max-width: 768px) {
-    .review-card {
-        padding: 16px;
-    }
-    
-    .review-text {
-        font-size: 13px;
-        padding: 12px;
-    }
-    
-    .review-stars {
-        font-size: 14px;
-    }
-    
-    .avg-rating {
-        padding: 12px 24px;
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .avg-rating-number {
-        font-size: 32px;
-    }
-    
-    .stars {
-        font-size: 18px;
-    }
-    
-    .admin-response {
-        padding: 10px 12px;
-        font-size: 12px;
-    }
-}
-

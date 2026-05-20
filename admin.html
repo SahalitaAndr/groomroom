@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>GroomRoom - Администратор</title>
     <link rel="icon" type="image/png" href="logo/logo_groom1.png">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -889,6 +889,290 @@
             font-size: 11px;
         }
     }
+    @media (max-width: 768px) {
+        .admin-container {
+            padding: 8px !important;
+        }
+        
+        .admin-profile-card {
+            flex-direction: column !important;
+            text-align: center !important;
+        }
+        
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+        
+        .analytics-stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+        
+        .calendar-header {
+            flex-direction: column !important;
+            text-align: center !important;
+        }
+        
+        .calendar-nav {
+            margin-top: 8px !important;
+        }
+        
+        .applications-list {
+            max-height: 400px !important;
+        }
+        
+        .application-item {
+            flex-direction: column !important;
+        }
+        
+        .app-actions {
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+        }
+        
+        .status-select, .photo-label, .btn-change {
+            margin: 3px !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .stats-grid {
+            grid-template-columns: 1fr !important;
+        }
+        
+        .analytics-stats-grid {
+            grid-template-columns: 1fr !important;
+        }
+        
+        .admin-chat-panel .chat-panel-header {
+            flex-direction: column !important;
+        }
+    }
+    @media (max-width: 768px) {
+        .analytics-stats-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+        }
+        
+        .analytics-charts {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 15px !important;
+        }
+        
+        .chart-card {
+            width: 100% !important;
+            overflow-x: auto !important;
+            padding: 12px !important;
+        }
+        
+        .bar-chart, .line-chart {
+            display: flex !important;
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            justify-content: flex-start !important;
+            gap: 8px !important;
+            padding-bottom: 10px !important;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .bar-item, .line-point {
+            min-width: 50px !important;
+            width: 50px !important;
+        }
+        
+        .bar-container {
+            height: 120px !important;
+        }
+        
+        .bar {
+            width: 30px !important;
+        }
+        
+        .line-bar {
+            width: 30px !important;
+        }
+        
+        .pie-chart-container {
+            gap: 8px !important;
+        }
+        
+        .pie-segment-info {
+            padding: 6px 10px !important;
+            font-size: 12px !important;
+        }
+        
+        .pie-color {
+            width: 18px !important;
+            height: 18px !important;
+        }
+        
+        .pie-percent {
+            font-size: 11px !important;
+            padding: 2px 8px !important;
+        }
+        
+        .stats-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+        }
+        
+        .stat-card {
+            padding: 12px !important;
+        }
+        
+        .stat-icon {
+            font-size: 28px !important;
+        }
+        
+        .stat-number {
+            font-size: 28px !important;
+        }
+        
+        .stat-label {
+            font-size: 10px !important;
+        }
+        
+        .analytics-stat-card {
+            padding: 12px 8px !important;
+        }
+        
+        .analytics-icon {
+            font-size: 24px !important;
+            margin-bottom: 5px !important;
+        }
+        
+        .analytics-number {
+            font-size: 22px !important;
+        }
+        
+        .analytics-label {
+            font-size: 9px !important;
+        }
+        
+        .analytics-container {
+            padding: 15px !important;
+        }
+        
+        .chart-card h4 {
+            font-size: 14px !important;
+            margin-bottom: 10px !important;
+        }
+        
+        .applications-list {
+            padding: 12px !important;
+        }
+        
+        .application-item {
+            padding: 12px !important;
+        }
+        
+        .app-pet-name {
+            font-size: 14px !important;
+        }
+        
+        .app-details {
+            font-size: 10px !important;
+            gap: 8px !important;
+        }
+        
+        .app-actions {
+            gap: 6px !important;
+        }
+        
+        .status-select, .photo-label, .btn-change {
+            font-size: 11px !important;
+            padding: 5px 10px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .analytics-stats-grid {
+            grid-template-columns: 1fr !important;
+            gap: 8px !important;
+        }
+        
+        .stats-grid {
+            grid-template-columns: 1fr !important;
+            gap: 8px !important;
+        }
+        
+        .bar-item, .line-point {
+            min-width: 45px !important;
+            width: 45px !important;
+        }
+        
+        .bar-label, .line-label {
+            font-size: 9px !important;
+        }
+        
+        .bar-value {
+            font-size: 8px !important;
+        }
+        
+        .calendar-legend .legend-item:last-child {
+            display: none;
+        }
+        
+        .calendar-day {
+            min-height: 45px !important;
+        }
+        
+        .day-number {
+            font-size: 11px !important;
+        }
+        
+        .day-status {
+            width: 20px !important;
+            height: 20px !important;
+            font-size: 10px !important;
+        }
+        
+        .weekday {
+            font-size: 9px !important;
+            padding: 4px !important;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .analytics-stat-card {
+            padding: 8px 5px !important;
+        }
+        
+        .analytics-icon {
+            font-size: 20px !important;
+        }
+        
+        .analytics-number {
+            font-size: 18px !important;
+        }
+        
+        .analytics-label {
+            font-size: 8px !important;
+        }
+        
+        .stat-card {
+            padding: 8px !important;
+        }
+        
+        .stat-number {
+            font-size: 22px !important;
+        }
+        
+        .bar-item, .line-point {
+            min-width: 38px !important;
+            width: 38px !important;
+        }
+        
+        .bar {
+            width: 25px !important;
+        }
+        
+        .line-bar {
+            width: 25px !important;
+        }
+    }
     </style>
 </head>
 <body>
@@ -1190,8 +1474,15 @@
                                 ${app.service ? `<span>✂️ ${escapeHtml(app.service)}</span>` : ''}
                                 ${app.appointmentDate ? `<span>📅 ${formatDateShort(app.appointmentDate)}</span>` : ''}
                                 ${(() => {
-                                    const contacts = getUserContacts(app.userId);
-                                    return `<span>📞 ${contacts.phone}</span><span>✉️ ${contacts.email}</span>`;
+                                    const users = JSON.parse(localStorage.getItem('groomroom_users') || '[]');
+                                    const user = users.find(u => u.id === app.userId);
+                                    let phone = 'не указан';
+                                    let email = 'не указан';
+                                    if (user) {
+                                        phone = user.phone || 'не указан';
+                                        email = user.email || 'не указан';
+                                    }
+                                    return `<span>📞 ${phone}</span><span>✉️ ${email}</span>`;
                                 })()}
                             </div>
                         </div>
@@ -1353,8 +1644,24 @@
 
             function getUserContacts(userId) {
                 const users = JSON.parse(localStorage.getItem('groomroom_users') || '[]');
-                const user = users.find(u => u.id === userId);
-                return user ? { phone: user.phone || 'не указан', email: user.email || 'не указан' } : { phone: 'не указан', email: 'не указан' };
+                let user = users.find(u => u.id === userId);
+                
+                if (!user) {
+                    const applications = getAllApplications();
+                    const app = applications.find(a => a.userId === userId);
+                    if (app && app.userPhone) {
+                        return { phone: app.userPhone || 'не указан', email: app.userEmail || 'не указан' };
+                    }
+                }
+                
+                if (!user) {
+                    return { phone: 'не указан', email: 'не указан' };
+                }
+                
+                return { 
+                    phone: user.phone || 'не указан', 
+                    email: user.email || 'не указан' 
+                };
             }
 
             window.openAdminChat = function(appId, petName, clientName) {

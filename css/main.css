@@ -1314,6 +1314,23 @@ input, select, textarea {
         gap: 15px;
     }
 
+    .footer,
+    .footer *,
+    .footer::before,
+    .footer::after {
+        border-bottom: none !important;
+        border-bottom-color: transparent !important;
+        text-decoration: none !important;
+    }
+    
+    .footer .contact-text,
+    .footer .contact-item,
+    .footer a,
+    .footer span {
+        text-decoration: none !important;
+        border-bottom: none !important;
+    }
+
     .contact-group {
         flex-direction: column;
         gap: 10px;
@@ -2194,4 +2211,219 @@ input[type="tel"]::placeholder {
 .review-count {
     font-size: 14px;
     color: #666;
+}
+
+@media (max-width: 768px) {
+    .admin-container,
+    .profile-container,
+    .container {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 10px !important;
+        margin: 0 !important;
+        overflow-x: hidden !important;
+    }
+    
+    body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+    
+    .admin-profile-card,
+    .profile-card,
+    .stats-grid,
+    .analytics-card,
+    .admin-chat-panel,
+    .reviews-management-card,
+    .calendar-card,
+    .applications-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        overflow-x: hidden !important;
+    }
+    
+    .stats-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    
+    .analytics-stats-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    
+    .calendar-days {
+        gap: 4px !important;
+    }
+    
+    .calendar-day {
+        min-height: 55px !important;
+        padding: 4px !important;
+    }
+    
+    .day-number {
+        font-size: 12px !important;
+    }
+    
+    .applications-list {
+        padding: 10px !important;
+    }
+    
+    .application-item {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 12px !important;
+    }
+    
+    .app-info {
+        width: 100% !important;
+    }
+    
+    .app-actions {
+        width: 100% !important;
+        justify-content: center !important;
+        margin-top: 10px !important;
+    }
+    
+    .chat-container {
+        width: calc(100% - 20px) !important;
+        left: 10px !important;
+        right: 10px !important;
+        bottom: 10px !important;
+        max-width: none !important;
+    }
+    
+    .chat-messages {
+        max-height: 300px !important;
+    }
+    
+    .modal-content {
+        width: 95% !important;
+        max-width: 95% !important;
+        margin: 10px auto !important;
+    }
+
+    .grid {
+        gap: 10px !important;
+    }
+    
+    .сcard {
+        width: calc(50% - 10px) !important;
+        min-width: 130px !important;
+    }
+    
+    .reviews-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .btn, .btn-submit, .logout-btn, .logout-admin-btn {
+        width: 100% !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+    
+    .header {
+        flex-wrap: wrap !important;
+        padding: 10px !important;
+    }
+    
+    .nav-left, .nav-right {
+        gap: 8px !important;
+    }
+    
+    .nav-left {
+        order: 3 !important;
+        width: 100% !important;
+        justify-content: center !important;
+        margin-top: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+    
+    .analytics-stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .calendar-day {
+        min-height: 45px !important;
+    }
+    
+    .weekday {
+        font-size: 9px !important;
+        padding: 4px !important;
+    }
+    
+    .admin-profile-card,
+    .profile-card {
+        padding: 15px !important;
+    }
+    
+    .admin-text h2 {
+        font-size: 20px !important;
+    }
+    
+    .calendar-header h3,
+    .calendar-header h4,
+    .card-header h3,
+    .chat-panel-header h4 {
+        font-size: 18px !important;
+    }
+    
+    .calendar-legend .legend-item:last-child {
+        display: none;
+    }
+    
+    .status-badge {
+        font-size: 10px !important;
+        padding: 3px 8px !important;
+    }
+    
+    select, input, textarea {
+        font-size: 14px !important;
+        padding: 8px 12px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .stats-grid {
+        gap: 6px !important;
+    }
+    
+    .stat-card {
+        padding: 12px !important;
+    }
+    
+    .stat-number {
+        font-size: 24px !important;
+    }
+    
+    .calendar-day {
+        min-height: 40px !important;
+    }
+    
+    .day-number {
+        font-size: 10px !important;
+    }
+    
+    .сcard {
+        width: 100% !important;
+        max-width: 140px !important;
+    }
+    
+    .card {
+        padding: 10px !important;
+    }
+    
+    .card h4 {
+        font-size: 12px !important;
+    }
 }

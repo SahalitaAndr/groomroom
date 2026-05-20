@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>GroomRoom - Личный кабинет</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
@@ -2025,26 +2025,34 @@
             }
         };
         
-        window.saveUserPhone = function() {
-            const phone = document.getElementById('userPhone').value;
-            if (phone && phone.trim()) {
-                localStorage.setItem(`user_phone_${currentUser.id}`, phone.trim());
-                showToast('Телефон сохранен!', 'success');
-            }
-        };
-        
         function loadUserData() {
             document.getElementById('userFullName').textContent = currentUser.fio || 'Пользователь';
-            document.getElementById('userEmail').textContent = currentUser.email || 'email@example.com';
+            
+            const userEmail = currentUser.email || 'email@example.com';
+            const emailSpan = document.getElementById('userEmail');
+            if (emailSpan) {
+                emailSpan.textContent = userEmail;
+            }
+        
+            const userPhone = currentUser.phone || '+7 XXX XXX-XX-XX';
+            const phoneInput = document.getElementById('userPhone');
+            if (phoneInput) {
+                phoneInput.value = userPhone;
+                phoneInput.disabled = true;
+                phoneInput.style.background = '#f5f5f5';
+                phoneInput.style.color = '#666';
+            }
+            
             const savedPetPhoto = localStorage.getItem(`pet_avatar_${currentUser.id}`);
-            if (savedPetPhoto && savedPetPhoto !== 'null') document.getElementById('petAvatarImg').src = savedPetPhoto;
+            if (savedPetPhoto && savedPetPhoto !== 'null') {
+                document.getElementById('petAvatarImg').src = savedPetPhoto;
+            }
+            
             const savedPetName = localStorage.getItem(`pet_name_${currentUser.id}`);
             if (savedPetName && savedPetName !== 'null') {
                 document.getElementById('petNameDisplay').innerHTML = `🐾 ${savedPetName}`;
                 document.getElementById('petName').value = savedPetName;
             }
-            const savedPhone = localStorage.getItem(`user_phone_${currentUser.id}`);
-            if (savedPhone && savedPhone !== 'null') document.getElementById('userPhone').value = savedPhone;
         }
         
         function formatDateFull(dateStr) {
